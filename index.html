@@ -1,0 +1,814 @@
+<title>アワード進捗 — 次の灯</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap">
+
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f5f7fa;
+  --border: #e4e8ef;
+  --border-2: #edf0f5;
+  --text: #1c1e24;
+  --text-2: #5a5e6a;
+  --text-3: #9a9ea8;
+  --topbar-bg: #f0f2f5;
+  --topbar-text: #1c1e24;
+  --topbar-sub: #6a717f;
+  --s-done-bg: #e6f5ec; --s-done-text: #1a5c38; --s-done-border: #6abf8a; --s-done-dot: #2a9050;
+  --s-active-bg: #e6eef8; --s-active-text: #1a3a62; --s-active-border: #6a9fd0; --s-active-dot: #2e5fa0;
+  --s-working-bg: #fef3e0; --s-working-text: #7a4800; --s-working-border: #e0a030; --s-working-dot: #c08020;
+  --s-blocker-bg: #feeee6; --s-blocker-text: #8a2800; --s-blocker-border: #e07040; --s-blocker-dot: #c05020;
+  --s-skip-bg: #f0f0f2; --s-skip-text: #5a6070; --s-skip-border: #c8cdd8; --s-skip-dot: #9aa0b0;
+  --s-unknown-bg: #f5f5f5; --s-unknown-text: #6a6a78; --s-unknown-border: #d0d0d8; --s-unknown-dot: #a8a8b8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151b; --surface: #1c2028; --surface-2: #181c22;
+    --border: #272e3a; --border-2: #202630;
+    --text: #e4e0d8; --text-2: #8a94a6; --text-3: #4a5566;
+    --topbar-bg: #1a1e26; --topbar-text: #c8cdd8; --topbar-sub: #4a5262;
+    --s-done-bg: #102a1c; --s-done-text: #5ab870; --s-done-border: #2a6040; --s-done-dot: #3a9060;
+    --s-active-bg: #0e1f36; --s-active-text: #6a9fd0; --s-active-border: #1e3a5f; --s-active-dot: #3a70b0;
+    --s-working-bg: #2a1e00; --s-working-text: #d4a83a; --s-working-border: #5a3a00; --s-working-dot: #c49028;
+    --s-blocker-bg: #2a1200; --s-blocker-text: #e08050; --s-blocker-border: #5a2000; --s-blocker-dot: #c05020;
+    --s-skip-bg: #1c1e24; --s-skip-text: #6a7080; --s-skip-border: #2a2e38; --s-skip-dot: #4a5062;
+    --s-unknown-bg: #1e2028; --s-unknown-text: #6a6a78; --s-unknown-border: #303040; --s-unknown-dot: #5a5a68;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151b; --surface: #1c2028; --surface-2: #181c22;
+  --border: #272e3a; --border-2: #202630;
+  --text: #e4e0d8; --text-2: #8a94a6; --text-3: #4a5566;
+  --topbar-bg: #1a1e26; --topbar-text: #c8cdd8; --topbar-sub: #4a5262;
+  --s-done-bg: #102a1c; --s-done-text: #5ab870; --s-done-border: #2a6040; --s-done-dot: #3a9060;
+  --s-active-bg: #0e1f36; --s-active-text: #6a9fd0; --s-active-border: #1e3a5f; --s-active-dot: #3a70b0;
+  --s-working-bg: #2a1e00; --s-working-text: #d4a83a; --s-working-border: #5a3a00; --s-working-dot: #c49028;
+  --s-blocker-bg: #2a1200; --s-blocker-text: #e08050; --s-blocker-border: #5a2000; --s-blocker-dot: #c05020;
+  --s-skip-bg: #1c1e24; --s-skip-text: #6a7080; --s-skip-border: #2a2e38; --s-skip-dot: #4a5062;
+  --s-unknown-bg: #1e2028; --s-unknown-text: #6a6a78; --s-unknown-border: #303040; --s-unknown-dot: #5a5a68;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* === TOPBAR === */
+.topbar {
+  background: var(--topbar-bg);
+  padding: 0.85rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar-co {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--topbar-text);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.topbar-title {
+  font-size: 0.72rem;
+  color: var(--topbar-sub);
+  letter-spacing: 0.03em;
+}
+.topbar-date {
+  margin-left: auto;
+  font-size: 0.68rem;
+  color: var(--topbar-sub);
+  white-space: nowrap;
+}
+.back-btn {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-2);
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+  transition: background 0.12s;
+}
+.back-btn:hover { background: var(--surface-2); }
+.back-btn svg { flex-shrink: 0; }
+
+/* === VIEWS === */
+#view-cover { display: block; }
+#view-detail { display: none; }
+body.show-detail #view-cover { display: none; }
+body.show-detail #view-detail { display: block; }
+body.show-detail .back-btn { display: flex; }
+body.show-detail .topbar-title { display: none; }
+
+/* === COVER PAGE === */
+.cover {
+  padding: 1.5rem 1.75rem 3rem;
+  max-width: 1160px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cover-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+
+.cover-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.cover-table thead th {
+  background: var(--surface-2);
+  padding: 0.65rem 1rem;
+  text-align: left;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+
+.cover-table thead th:first-child { width: 220px; }
+.cover-table thead th:nth-child(3) { width: 200px; }
+.cover-table thead th:last-child { width: 150px; }
+
+.cover-table tbody tr {
+  border-bottom: 1px solid var(--border-2);
+  cursor: pointer;
+  transition: background 0.1s;
+  line-height: 1.6;
+}
+.cover-table tbody tr:last-child { border-bottom: none; }
+.cover-table tbody tr:hover { background: var(--surface-2); }
+
+/* group header rows */
+.cover-table .group-row td {
+  background: var(--surface-2);
+  padding: 0.4rem 1rem;
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  cursor: default;
+}
+.cover-table .group-row:first-child td { border-top: none; }
+.cover-table .group-row:hover { background: var(--surface-2); }
+
+.cover-table td {
+  padding: 1rem 1.1rem;
+  vertical-align: top;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* col A — pitch name */
+.col-name {
+  color: var(--text);
+  font-weight: 500;
+}
+.col-name-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+.col-num {
+  font-size: 0.7rem;
+  color: var(--text-3);
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+.col-name-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.35;
+}
+.ceo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.5rem;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  background: #1e3a5f;
+  color: #fff;
+  border-radius: 2px;
+}
+.ceo-badge .ceo-emoji {
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.col-status-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.18rem 0.55rem;
+  margin-top: 0.4rem;
+  border-radius: 2px;
+}
+tr.s-done .col-status-badge { background: var(--s-done-bg); color: var(--s-done-text); }
+tr.s-active .col-status-badge { background: var(--s-active-bg); color: var(--s-active-text); }
+tr.s-working .col-status-badge { background: var(--s-working-bg); color: var(--s-working-text); }
+tr.s-blocker .col-status-badge { background: var(--s-blocker-bg); color: var(--s-blocker-text); }
+tr.s-skip .col-status-badge { background: var(--s-skip-bg); color: var(--s-skip-text); }
+tr.s-unknown .col-status-badge { background: var(--s-unknown-bg); color: var(--s-unknown-text); }
+
+/* col B — current */
+.col-current {
+  color: var(--text);
+  font-size: 0.87rem;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* col C — next action */
+.col-next { color: var(--text); font-size: 0.87rem; font-weight: 500; }
+.col-next .next-label {
+  display: inline-block;
+  font-size: 0.63rem;
+  font-weight: 700;
+  border: 1px solid var(--s-active-dot);
+  color: var(--s-active-dot);
+  padding: 0.1rem 0.38rem;
+  margin-bottom: 0.3rem;
+  vertical-align: middle;
+  margin-right: 0.35rem;
+}
+tr.s-working .col-next .next-label { border-color: var(--s-working-dot); color: var(--s-working-dot); }
+tr.s-blocker .col-next .next-label { border-color: var(--s-blocker-dot); color: var(--s-blocker-dot); }
+tr.s-done .col-next .next-label { border-color: var(--s-done-dot); color: var(--s-done-dot); }
+.col-next-empty { color: var(--text-3); font-size: 0.8rem; }
+
+/* col D — deadline */
+.col-deadline {
+  font-size: 0.87rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--text-2);
+}
+tr.s-working .col-deadline { color: var(--s-working-text); font-weight: 700; }
+tr.s-blocker .col-deadline { color: var(--s-blocker-text); font-weight: 700; }
+tr.s-active .col-deadline { color: var(--text); }
+
+.row-arrow { color: var(--text-3); font-size: 0.7rem; text-align: right !important; vertical-align: middle !important; white-space: nowrap; }
+
+/* status stripe */
+tr.s-done td:first-child { border-left: 3px solid var(--s-done-dot); }
+tr.s-active td:first-child { border-left: 3px solid var(--s-active-dot); }
+tr.s-working td:first-child { border-left: 3px solid var(--s-working-dot); }
+tr.s-blocker td:first-child { border-left: 3px solid var(--s-blocker-dot); }
+tr.s-skip td:first-child { border-left: 3px solid var(--s-skip-dot); }
+tr.s-unknown td:first-child { border-left: 3px solid var(--s-unknown-dot); }
+
+/* === DETAIL VIEW === */
+.detail-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1.75rem 3rem;
+  width: 100%;
+}
+
+.detail-header {
+  margin-bottom: 1.5rem;
+}
+.detail-breadcrumb {
+  font-size: 0.63rem;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.detail-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 0.35rem;
+}
+.detail-org { font-size: 0.78rem; color: var(--text-2); }
+
+/* Status card */
+.status-card {
+  border-left: 3px solid;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.status-card.s-done { background: var(--s-done-bg); border-color: var(--s-done-border); }
+.status-card.s-active { background: var(--s-active-bg); border-color: var(--s-active-border); }
+.status-card.s-working { background: var(--s-working-bg); border-color: var(--s-working-border); }
+.status-card.s-blocker { background: var(--s-blocker-bg); border-color: var(--s-blocker-border); }
+.status-card.s-skip { background: var(--s-skip-bg); border-color: var(--s-skip-border); }
+.status-card.s-unknown { background: var(--s-unknown-bg); border-color: var(--s-unknown-border); }
+
+.status-badge { font-size: 0.72rem; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+.s-done .status-badge { color: var(--s-done-text); }
+.s-active .status-badge { color: var(--s-active-text); }
+.s-working .status-badge { color: var(--s-working-text); }
+.s-blocker .status-badge { color: var(--s-blocker-text); }
+.s-skip .status-badge { color: var(--s-skip-text); }
+.s-unknown .status-badge { color: var(--s-unknown-text); }
+
+.status-current { font-size: 0.82rem; line-height: 1.7; flex: 1; }
+.s-done .status-current { color: var(--s-done-text); }
+.s-active .status-current { color: var(--s-active-text); }
+.s-working .status-current { color: var(--s-working-text); }
+.s-blocker .status-current { color: var(--s-blocker-text); }
+.s-skip .status-current { color: var(--s-skip-text); }
+.s-unknown .status-current { color: var(--s-unknown-text); }
+
+.status-deadline { font-size: 0.7rem; font-weight: 700; white-space: nowrap; flex-shrink: 0; align-self: center; opacity: 0.8; }
+.s-done .status-deadline { color: var(--s-done-text); }
+.s-active .status-deadline { color: var(--s-active-text); }
+.s-working .status-deadline { color: var(--s-working-text); }
+.s-blocker .status-deadline { color: var(--s-blocker-text); }
+
+/* Section label */
+.section-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 1rem;
+}
+
+/* Timeline */
+.timeline-wrap { margin-bottom: 2.25rem; }
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px; top: 8px; bottom: 8px;
+  width: 1px;
+  background: var(--border);
+}
+.tl-step { position: relative; margin-bottom: 1.1rem; padding-left: 1rem; }
+.tl-step:last-child { margin-bottom: 0; }
+.tl-dot {
+  position: absolute;
+  left: -22px; top: 6px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  z-index: 1;
+}
+.tl-step.done .tl-dot { background: var(--s-done-dot); border-color: var(--s-done-dot); }
+.tl-step.current .tl-dot { background: var(--s-active-dot); border-color: var(--s-active-dot); box-shadow: 0 0 0 3px var(--s-active-bg); }
+.tl-step.current.working .tl-dot { background: var(--s-working-dot); border-color: var(--s-working-dot); box-shadow: 0 0 0 3px var(--s-working-bg); }
+.tl-step.current.blocker .tl-dot { background: var(--s-blocker-dot); border-color: var(--s-blocker-dot); box-shadow: 0 0 0 3px var(--s-blocker-bg); }
+.tl-step.next .tl-dot { border-color: var(--s-active-dot); background: var(--bg); }
+
+.tl-date { font-size: 0.65rem; font-weight: 700; color: var(--text-3); letter-spacing: 0.04em; margin-bottom: 0.1rem; }
+.tl-step.current .tl-date { color: var(--s-active-text); }
+.tl-step.current.working .tl-date { color: var(--s-working-text); }
+.tl-step.current.blocker .tl-date { color: var(--s-blocker-text); }
+.tl-step.next .tl-date { color: var(--s-active-dot); }
+
+.tl-phase { font-size: 0.85rem; font-weight: 700; color: var(--text-2); line-height: 1.35; }
+.tl-step.done .tl-phase { color: var(--text-3); text-decoration: line-through; text-decoration-color: var(--border); }
+.tl-step.current .tl-phase { color: var(--text); }
+.tl-step.next .tl-phase { color: var(--text); }
+
+.tl-sub { font-size: 0.72rem; color: var(--text-3); margin-top: 0.15rem; line-height: 1.5; }
+.tl-step.current .tl-sub { color: var(--text-2); }
+
+.current-chip {
+  display: inline-block;
+  font-size: 0.58rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.15rem 0.45rem;
+  margin-left: 0.4rem;
+  vertical-align: middle; position: relative; top: -1px;
+  background: var(--s-active-dot); color: #fff;
+}
+.working .current-chip { background: var(--s-working-dot); }
+.blocker .current-chip { background: var(--s-blocker-dot); }
+.next-chip {
+  display: inline-block;
+  font-size: 0.58rem; font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.12rem 0.4rem;
+  margin-left: 0.4rem;
+  vertical-align: middle; position: relative; top: -1px;
+  border: 1px solid var(--s-active-dot); color: var(--s-active-dot);
+}
+
+/* Notes */
+.notes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+.note-card { background: var(--surface-2); border: 1px solid var(--border); padding: 1rem 1.1rem; }
+.note-card-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0.5rem; }
+.note-card-body { font-size: 0.8rem; color: var(--text-2); line-height: 1.7; }
+
+.empty-state { text-align: center; padding: 3rem 2rem; color: var(--text-3); }
+.empty-state .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.empty-state p { font-size: 0.82rem; }
+
+/* Mobile */
+@media (max-width: 600px) {
+  .cover { padding: 1rem 0.75rem 2.5rem; }
+  .detail-wrap { padding: 1.25rem 1rem 2.5rem; }
+  .notes-grid { grid-template-columns: 1fr; }
+  .topbar { padding: 0.75rem 1rem; }
+  .topbar-co { font-size: 0.72rem; }
+  .cover-table thead th:nth-child(3),
+  .cover-table td:nth-child(3) { display: none; }
+}
+</style>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <button class="back-btn" id="back-btn" onclick="showCover()">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8">
+      <polyline points="9,2 4,7 9,12"/>
+    </svg>
+    一覧へ戻る
+  </button>
+  <span class="topbar-co">次の灯株式会社</span>
+  <span class="topbar-title">アワード・ピッチ 進捗ダッシュボード</span>
+  <span class="topbar-date" id="today-date"></span>
+</div>
+
+<!-- COVER VIEW -->
+<div id="view-cover">
+  <div class="cover">
+    <div class="cover-table-wrap">
+      <table class="cover-table">
+        <thead>
+          <tr>
+            <th>ピッチ名 / ステータス</th>
+            <th>現在の状況</th>
+            <th>次のアクション</th>
+            <th>締切</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="cover-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL VIEW -->
+<div id="view-detail">
+  <div class="detail-wrap" id="detail-body"></div>
+</div>
+
+<script>
+const PITCHES = [
+  {
+    id: 3, num: '③', name: 'GPTW「働きがいのある会社」ランキング', short: 'GPTW',
+    org: 'GPTW Japan', status: 'working', statusLabel: '🏅 第1段階 認定済み / 第2段階 資料提出中',
+    deadline: '9月末（追加資料提出）',
+    current: '🏅 認定取得済み（岡山県内2社のみ）。全国ランキング入りを目指し、9月末までに追加資料を提出する必要がある。',
+    target: '次の灯',
+    winAngle: '制度刷新後のスコア安定を待って実施。9期制度刷新×定着率97%。',
+    risk: '9期の制度改定直後はスコアが荒れるリスク。全国ランキング入りには追加資料の内容が鍵。',
+    timeline: [
+      { phase: 'エントリー', done: true },
+      { phase: '【第1段階】認定獲得', done: true, sub: '岡山県内2社のみ ✅' },
+      { phase: '【第2段階】全国ランキング向け 追加資料作成・提出', current: true, working: true, date: '9月末', next: true, sub: '⚠ 締切：9月末' },
+      { phase: '【第2段階】審査・ランキング確定' },
+      { phase: '【第2段階】全国ランキング掲載・表彰' },
+    ]
+  },
+  {
+    id: 4, num: '④', name: 'EYアントレプレナー・オブ・ザ・イヤー 2026', short: 'EY EOY 2026',
+    org: 'EY Japan', status: 'working', statusLabel: '🏆 第1段階 部門賞確定 / 第2段階 大賞ピッチ準備中',
+    deadline: '10月16日（オフラインピッチ）',
+    current: '🏆 部門賞受賞確定（4名選出）。10月16日のオフラインピッチで大賞1名が決定。',
+    ceo: true,
+    target: 'CEO（個人として登壇・評価）',
+    winAngle: '18億→27億→100億のJ-Curve成長ストーリー。地方発×循環経済×社長の人格。',
+    risk: '本人合意・推薦者確保が必須。会社ではなく社長個人が評価・登壇の対象。',
+    timeline: [
+      { phase: 'エントリー・書類審査', done: true },
+      { phase: '【第1段階】Challenging Spirit部門 選出（4名）\n部門賞受賞確定', done: true, sub: '選出済み ✅' },
+      { date: '2026年10月16日 ヒルトン広島', phase: '【第2段階】オフラインピッチ・セレモニー', current: true, working: true, next: true, sub: '⚠ ここで大賞1名が決定 | CEO登壇必須' },
+      { phase: '【第2段階】部門大賞 決定（1名）', sub: '同日発表' },
+    ]
+  },
+  {
+    id: 5, num: '⑤', name: 'Japan Venture Awards 第26回', short: 'JVA 第26回',
+    org: '中小機構', status: 'active', statusLabel: '提出済み / 1次審査待ち', ceo: true,
+    deadline: '提出済み（8/19 締切）',
+    current: '1次審査結果の通知を待っている。通過すれば9月中旬に書類提出へ。',
+    target: null,
+    winAngle: '旧アイテムワンからの経営再建×GPTW認定＝「再挑戦起業賞」に直結。DPFリビルド×PGM資源循環＝「地域課題解決賞」にも合致。外国人CEOによる海外展開は「多様性」の加点材料。',
+    risk: '1次審査はエントリーフォームのみで通過可否が決まる。2次審査通過後に応募様式・財務諸表3期分の提出が必要。',
+    timeline: [
+      { phase: '公式HPエントリーフォーム入力', done: true },
+      { date: '8月19日 18:00', phase: '1次審査 締切 / 提出済み', done: true, current: true, sub: '審査中' },
+      { date: '9月上旬', phase: '1次審査 結果通知', next: true, sub: '通過者全員に通知' },
+      { date: '9月中旬', phase: '2次審査 書類提出', sub: '1次通過者のみ｜応募様式・会社案内・財務諸表3期分' },
+      { date: '10月下旬', phase: '2次審査 結果通知' },
+      { date: '11月5日・6日', phase: '面接審査', sub: 'オンライン可' },
+      { date: '2026年12月15日', phase: '結果発表・表彰式', sub: '虎ノ門ヒルズフォーラム' },
+    ]
+  },
+  {
+    id: 6, num: '⑥', name: '気候変動アクション環境大臣表彰', short: '環境大臣表彰',
+    org: '環境省', status: 'active', statusLabel: '提出済み / 審査中',
+    deadline: '提出済み（8/7 締切）',
+    current: '選考委員会による審査中。「貢献度・波及性・持続性・刷新性」で評価される。',
+    target: null,
+    winAngle: 'DPFリビルド×CO₂削減の技術訴求。都市鉱山・重要鉱物の国内循環。',
+    risk: '競合が大手企業中心。技術面の説得力が勝負。',
+    timeline: [
+      { date: '8月7日', phase: '応募締切 / 提出済み', done: true, current: true },
+      { phase: '選考委員会 審査', next: true, sub: '貢献度・波及性・持続性・刷新性' },
+      { phase: '表彰候補者 選出' },
+      { phase: '環境大臣による決定' },
+      { date: '11月上旬〜中旬', phase: '結果発表' },
+      { date: '12月中旬', phase: '表彰式' },
+    ]
+  },
+  {
+    id: 9, num: '⑨', name: 'NIKKEI THE PITCH（SOCIAL部門）', short: 'NIKKEI THE PITCH',
+    org: '日本経済新聞社', status: 'active', statusLabel: '応募完了 / 1次審査待ち', ceo: true,
+    deadline: '応募完了（8/24 締切）',
+    current: '9月中旬の一次審査結果を待っている。10月中旬に通過者発表。\nSOCIAL部門のみ応募（GROWTHとの整合性・審査員構成を考慮）。',
+    target: null,
+    winAngle: 'SOCIAL審査軸：社会性・事業性・革新性。審査員は東大教授・ユーグレナCo-CEO等、社会的意義目線。都市鉱山・DPF再生によるCO₂削減ストーリーが直球。予選ピッチなしで実務負荷が軽い。',
+    risk: 'GROWTH部門と2部門での訴求がどう組んでもずれて整合性が無く見えるため、SOCIAL部門のみに絞った判断。',
+    timeline: [
+      { date: '6月22日〜8月24日', phase: '応募期間 / 提出済み', done: true, current: true, sub: 'SOCIAL部門のみ応募' },
+      { date: '9月中旬', phase: '書類一次審査', next: true, sub: '予選ピッチなし・書類審査のみ' },
+      { date: '10月中旬', phase: 'ファイナリスト10組 発表', sub: '通過者にのみ詳細連絡' },
+      { date: '10月〜', phase: 'ブラッシュアップMTG・ゼミ', sub: '任意参加' },
+      { date: '2027年2月10日', phase: '最終審査会・表彰式', sub: 'TODA HALL & CONFERENCE TOKYO（参加必須）' },
+    ]
+  },
+  {
+    id: 7, num: '⑦', name: '環境省グッドライフアワード2026', short: 'グッドライフアワード',
+    org: '環境省', status: 'working', statusLabel: 'ドラフト作成中',
+    deadline: '2026年9月13日（日）',
+    current: '応募文書ドラフト作成中。締切9/13まで対応が必要。',
+    target: null,
+    winAngle: '都市鉱山×レアメタル循環、地域循環共生圏の実践。',
+    risk: '実行委員会特別賞の選択方針、会社基礎情報の確定待ち。',
+    timeline: [
+      { phase: '応募文書 ドラフト作成中', current: true, working: true, sub: '対応中' },
+      { date: '2026年9月13日', phase: '応募締切', next: true },
+      { phase: '審査・選考' },
+      { date: '2026年11月下旬', phase: '各賞 受賞発表' },
+      { date: '2026年12月5日', phase: '表彰式' },
+    ]
+  },
+  {
+    id: 11, num: '⑪', name: 'WE AT', short: 'WE AT',
+    org: '一般社団法人WE AT', status: 'working', statusLabel: '作成中 / 締切 8/31', ceo: true,
+    deadline: '2026年8月31日（月）23:59',
+    current: '応募書類作成中。締切まで残りわずか（8/31 23:59）。',
+    target: 'スタートアップ・グローバル展開を視野に入れた団体',
+    winAngle: 'Track1「Planetary Well-being」（地球環境）の課題設定に直球で合う。都市鉱山・レアメタル回収・DPF再生によるCO₂削減。',
+    risk: '「グローバル展開を視野に入れていること」が前提条件。現在の国内中心の事業フレームをどうグローバル文脈で訴求するか検討が必要。最終審査は英語のみ（要公式確認）。英語ピッチ体制の準備が必要。',
+    timeline: [
+      { phase: '応募書類 作成中', current: true, working: true, sub: '⚠ 締切まで残りわずか' },
+      { date: '8月31日 23:59', phase: '応募締切', next: true },
+      { phase: '1次選考' },
+      { date: '11月27日', phase: '最終選考会', sub: 'Tokyo Innovation Base（TIB）' },
+    ]
+  },
+  {
+    id: 8, num: '⑧', name: '健康経営優良法人2027（中小規模法人）', short: '健康経営優良法人',
+    org: '経済産業省・日本健康会議', status: 'blocker', statusLabel: 'ブロッカーあり ⚠',
+    deadline: '申請期間：8/17〜10/16',
+    current: '協会けんぽ「健康宣言」の実施状況確認が唯一のブロッカー。未実施なら早期エントリーが必要。',
+    target: null,
+    winAngle: '定着率97%・育休100%・8ヵ国チーム。',
+    risk: '健康宣言が未実施なら早期エントリーが必要。',
+    timeline: [
+      { phase: '協会けんぽ「健康宣言」実施確認', current: true, blocker: true, sub: '⚠ 唯一のブロッカー｜要確認' },
+      { date: '8月17日〜10月16日', phase: '健康経営優良法人 認定申請', next: true },
+      { phase: '請求書送付・認定申請料支払い' },
+      { phase: '審査' },
+      { date: '2027年2月頃', phase: '内定' },
+      { date: '2027年3月頃', phase: '認定・発表' },
+    ]
+  },
+  {
+    id: 1, num: '①', name: 'Sustainable Japan Award 2026', short: 'Sustainable Japan',
+    org: 'ジャパンタイムズキューブ', status: 'skip', statusLabel: '見送り',
+    deadline: '2026/6/30（終了）',
+    current: '時間不足のため未応募。英文対応の要否が最後まで未確定のまま時間切れ。',
+    target: null, winAngle: '定量CO₂×循環経済の独自性。', risk: '英文対応の要否が最後まで未確定のまま時間切れ。',
+    timeline: []
+  },
+  {
+    id: 2, num: '②', name: 'グッドキャリア企業アワード2026', short: 'グッドキャリア',
+    org: '厚生労働省', status: 'skip', statusLabel: '見送り',
+    deadline: '2026/7/14（終了）',
+    current: '障害者雇用の達成が応募条件として必須のため、今期は応募対象外。',
+    target: null, winAngle: '9期制度刷新×定着率97%。イノベーション賞狙い。', risk: '障害者雇用の達成が応募条件必須。',
+    timeline: []
+  },
+  {
+    id: 10, num: '⑩', name: 'ホワイト企業認定', short: 'ホワイト企業認定',
+    org: null, status: 'unknown', statusLabel: '未定',
+    deadline: '—',
+    current: '詳細未定。',
+    target: null, winAngle: null, risk: null,
+    timeline: []
+  },
+];
+
+const STATUS_META = {
+  done:    { label: '認定・受賞確定', cls: 's-done' },
+  active:  { label: '提出済み・審査中', cls: 's-active' },
+  working: { label: '対応中', cls: 's-working' },
+  blocker: { label: 'ブロッカーあり', cls: 's-blocker' },
+  skip:    { label: '見送り', cls: 's-skip' },
+  unknown: { label: '未定', cls: 's-unknown' },
+};
+
+const GROUPS = [
+  { key: 'done',    label: '✦ 認定・受賞確定' },
+  { key: 'active',  label: '◎ 提出済み・審査中' },
+  { key: 'working', label: '○ 対応中' },
+  { key: 'blocker', label: '⚠ ブロッカーあり' },
+  { key: 'skip',    label: '— 見送り' },
+  { key: 'unknown', label: '? 未定' },
+];
+
+function nl2br(str) {
+  return str ? str.replace(/\n/g, '<br>') : '';
+}
+
+function renderTimeline(tl) {
+  if (!tl || !tl.length) return '';
+  return tl.map(s => {
+    let cls = 'tl-step';
+    if (s.done) cls += ' done';
+    if (s.current) cls += ' current';
+    if (s.working) cls += ' working';
+    if (s.blocker) cls += ' blocker';
+    if (s.next) cls += ' next';
+    const datePart = s.date ? `<div class="tl-date">${s.date}</div>` : '';
+    const phaseText = s.phase.replace(/\n/g, '<br>');
+    let chips = '';
+    if (s.current && !s.done) chips += `<span class="current-chip">現在</span>`;
+    if (s.next) chips += `<span class="next-chip">次のステップ</span>`;
+    const subPart = s.sub ? `<div class="tl-sub">${s.sub}</div>` : '';
+    return `<div class="${cls}"><div class="tl-dot"></div>${datePart}<div class="tl-phase">${phaseText}${chips}</div>${subPart}</div>`;
+  }).join('');
+}
+
+function getNextAction(p) {
+  if (!p.timeline || !p.timeline.length) return null;
+  const nextStep = p.timeline.find(s => s.next);
+  if (nextStep) return { phase: nextStep.phase, date: nextStep.date || null };
+  // fallback: first non-done step
+  const pending = p.timeline.find(s => !s.done && !s.current);
+  if (pending) return { phase: pending.phase, date: pending.date || null };
+  return null;
+}
+
+function buildCover() {
+  const body = document.getElementById('cover-body');
+  let html = '';
+  GROUPS.forEach(g => {
+    const items = PITCHES.filter(p => p.status === g.key);
+    if (!items.length) return;
+    html += `<tr class="group-row"><td colspan="5">${g.label}　<span style="font-weight:400;opacity:0.7">${items.length}件</span></td></tr>`;
+    items.forEach(p => {
+      const next = getNextAction(p);
+      let nextHtml = '<span class="col-next-empty">—</span>';
+      if (next) {
+        const dateStr = next.date ? `<span style="font-size:0.65rem;color:var(--text-3);display:block;margin-top:0.1rem">${next.date}</span>` : '';
+        nextHtml = `<span class="next-label">NEXT</span>${next.phase.replace(/\n/g,'<br>')}${dateStr}`;
+      }
+      const dl = (p.status !== 'skip' && p.status !== 'unknown' && p.deadline) ? p.deadline : '—';
+      html += `
+        <tr class="s-${p.status}" onclick="showDetail(${p.id})">
+          <td class="col-name">
+            <div class="col-name-inner">
+              <span class="col-num">${p.num}</span>
+              <div>
+                <div class="col-name-text">${p.name}${p.ceo ? '<span class="ceo-badge"><span class="ceo-emoji">🦄</span>CEO</span>' : ''}</div>
+                <span class="col-status-badge">${p.statusLabel}</span>
+              </div>
+            </div>
+          </td>
+          <td class="col-current">${nl2br(p.current)}</td>
+          <td class="col-next">${nextHtml}</td>
+          <td class="col-deadline">${dl}</td>
+          <td class="row-arrow">→</td>
+        </tr>
+      `;
+    });
+  });
+  body.innerHTML = html;
+}
+
+function showDetail(id) {
+  const p = PITCHES.find(x => x.id === id);
+  const sm = STATUS_META[p.status];
+
+  let timelineHtml = '';
+  if (p.timeline && p.timeline.length) {
+    timelineHtml = `
+      <div class="timeline-wrap">
+        <div class="section-label">選考フロー・スケジュール</div>
+        <div class="timeline">${renderTimeline(p.timeline)}</div>
+      </div>
+    `;
+  }
+
+  const noteCards = [];
+  if (p.winAngle) noteCards.push({ label: '勝ち筋 / Win Angle', body: p.winAngle });
+  if (p.risk) noteCards.push({ label: 'リスク・留意事項', body: p.risk });
+  if (p.target) noteCards.push({ label: '対象 / Target', body: p.target });
+  const notesHtml = noteCards.length ? `
+    <div class="section-label">補足情報</div>
+    <div class="notes-grid">${noteCards.map(c => `
+      <div class="note-card">
+        <div class="note-card-label">${c.label}</div>
+        <div class="note-card-body">${nl2br(c.body)}</div>
+      </div>`).join('')}
+    </div>
+  ` : '';
+
+  const deadlineHtml = (p.status !== 'skip' && p.status !== 'unknown' && p.deadline)
+    ? `<span class="status-deadline">締切：${p.deadline}</span>` : '';
+
+  document.getElementById('detail-body').innerHTML = `
+    <div class="detail-header">
+      <div class="detail-breadcrumb">${sm.label}</div>
+      <div class="detail-title">${p.name}</div>
+      ${p.org ? `<div class="detail-org">${p.org}</div>` : ''}
+    </div>
+    <div class="status-card ${sm.cls}">
+      <span class="status-badge">${p.statusLabel}</span>
+      <span class="status-current">${nl2br(p.current)}</span>
+      ${deadlineHtml}
+    </div>
+    ${timelineHtml}
+    ${notesHtml}
+    ${(!p.timeline || !p.timeline.length) && !noteCards.length ? `
+      <div class="empty-state"><div class="icon">—</div><p>詳細情報なし</p></div>
+    ` : ''}
+  `;
+
+  document.body.classList.add('show-detail');
+  window.scrollTo(0, 0);
+}
+
+function showCover() {
+  document.body.classList.remove('show-detail');
+  window.scrollTo(0, 0);
+}
+
+function init() {
+  const d = new Date();
+  document.getElementById('today-date').textContent =
+    `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()} 時点`;
+  buildCover();
+}
+
+init();
+</script>
