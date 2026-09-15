@@ -47,10 +47,9 @@ body {
   padding: 28px 20px 56px;
   min-height: 100vh;
 }
-/* Header */
 .hdr {
   display: flex; align-items: flex-start; justify-content: space-between;
-  flex-wrap: wrap; gap: 12px; margin-bottom: 28px;
+  flex-wrap: wrap; gap: 12px; margin-bottom: 10px;
 }
 .hdr-title {
   font-family: 'BIZ UDPMincho', serif;
@@ -64,7 +63,7 @@ body {
   font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 20px;
   background: var(--flame-bg); color: var(--flame); border: 1px solid var(--flame-border);
 }
-/* Summary row */
+.hdr-note { font-size: 11.5px; color: var(--ink-muted); margin-bottom: 20px; }
 .summary-row {
   display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px;
 }
@@ -75,20 +74,23 @@ body {
 .chip-urgent { background: #FFF0EE; color: #B53020; border-color: #F0B0A8; }
 .chip-wait   { background: #EEF6FF; color: #215E82; border-color: #A8CCEE; }
 .chip-ceo    { background: #F0EAFF; color: #5820B4; border-color: #C4AAF0; }
+.chip-hold   { background: #F3F1EA; color: #7A6A45; border-color: #D8CBA8; }
+.chip-unclear{ background: #F0F0F0; color: #6B6B6B; border-color: #D0D0D0; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .chip-urgent { background: #280A08; color: #FF9080; border-color: #6A2020; }
   :root:not([data-theme="light"]) .chip-wait   { background: #081828; color: #70B8E8; border-color: #204060; }
   :root:not([data-theme="light"]) .chip-ceo    { background: #180E30; color: #B090FF; border-color: #402878; }
+  :root:not([data-theme="light"]) .chip-hold   { background: #24200E; color: #D8C080; border-color: #4A3E1C; }
+  :root:not([data-theme="light"]) .chip-unclear{ background: #1C1C1C; color: #9A9A9A; border-color: #3A3A3A; }
 }
 :root[data-theme="dark"] .chip-urgent { background: #280A08; color: #FF9080; border-color: #6A2020; }
 :root[data-theme="dark"] .chip-wait   { background: #081828; color: #70B8E8; border-color: #204060; }
 :root[data-theme="dark"] .chip-ceo    { background: #180E30; color: #B090FF; border-color: #402878; }
+:root[data-theme="dark"] .chip-hold   { background: #24200E; color: #D8C080; border-color: #4A3E1C; }
+:root[data-theme="dark"] .chip-unclear{ background: #1C1C1C; color: #9A9A9A; border-color: #3A3A3A; }
 
-/* Table */
 .tbl-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); }
-table {
-  width: 100%; border-collapse: collapse; min-width: 620px;
-}
+table { width: 100%; border-collapse: collapse; min-width: 660px; }
 thead th {
   background: var(--surface2); padding: 10px 14px;
   font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
@@ -101,16 +103,20 @@ tbody tr:hover { background: var(--surface2); }
 td { padding: 14px 14px; vertical-align: top; }
 .td-name { min-width: 190px; }
 .td-status { width: 130px; }
-.td-detail { }
-.td-action { min-width: 160px; }
-.td-dl { width: 80px; white-space: nowrap; text-align: right; }
+.td-action { min-width: 170px; }
+.td-dl { width: 168px; white-space: nowrap; }
 
-/* Row accent borders by group */
-.row-urgent td:first-child { border-left: 3px solid #D05030; }
-.row-wait   td:first-child { border-left: 3px solid #4090C0; }
-.row-ceo    td:first-child { border-left: 3px solid #8050C0; }
+.row-urgent  { --row-accent: #D05030; }
+.row-wait    { --row-accent: #4090C0; }
+.row-ceo     { --row-accent: #8050C0; }
+.row-hold    { --row-accent: #B8A050; }
+.row-unclear { --row-accent: #A0A0A0; }
+.row-urgent  td:first-child { border-left: 3px solid #D05030; }
+.row-wait    td:first-child { border-left: 3px solid #4090C0; }
+.row-ceo     td:first-child { border-left: 3px solid #8050C0; }
+.row-hold    td:first-child { border-left: 3px solid #B8A050; }
+.row-unclear td:first-child { border-left: 3px solid #A0A0A0; }
 
-/* Status badges */
 .st {
   display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px;
   border-radius: 20px; white-space: nowrap;
@@ -119,31 +125,40 @@ td { padding: 14px 14px; vertical-align: top; }
 .st-inprog { background: #FFF8EE; color: #9A5C08; border: 1px solid #E8C888; }
 .st-wait   { background: #EEF6FF; color: #215E82; border: 1px solid #A8CCEE; }
 .st-ceo    { background: #F0EAFF; color: #5820B4; border: 1px solid #C4AAF0; }
+.st-hold   { background: #F3F1EA; color: #7A6A45; border: 1px solid #D8CBA8; }
+.st-unclear{ background: #F0F0F0; color: #6B6B6B; border: 1px solid #D0D0D0; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .st-urgent { background:#280A08; color:#FF9080; border-color:#6A2020; }
   :root:not([data-theme="light"]) .st-inprog { background:#281408; color:#FFB060; border-color:#6A3A10; }
   :root:not([data-theme="light"]) .st-wait   { background:#081828; color:#70B8E8; border-color:#204060; }
   :root:not([data-theme="light"]) .st-ceo    { background:#180E30; color:#B090FF; border-color:#402878; }
+  :root:not([data-theme="light"]) .st-hold   { background:#24200E; color:#D8C080; border-color:#4A3E1C; }
+  :root:not([data-theme="light"]) .st-unclear{ background:#1C1C1C; color:#9A9A9A; border-color:#3A3A3A; }
 }
 :root[data-theme="dark"] .st-urgent { background:#280A08; color:#FF9080; border-color:#6A2020; }
 :root[data-theme="dark"] .st-inprog { background:#281408; color:#FFB060; border-color:#6A3A10; }
 :root[data-theme="dark"] .st-wait   { background:#081828; color:#70B8E8; border-color:#204060; }
 :root[data-theme="dark"] .st-ceo    { background:#180E30; color:#B090FF; border-color:#402878; }
+:root[data-theme="dark"] .st-hold   { background:#24200E; color:#D8C080; border-color:#4A3E1C; }
+:root[data-theme="dark"] .st-unclear{ background:#1C1C1C; color:#9A9A9A; border-color:#3A3A3A; }
 
 .pitch-name { font-weight: 600; font-size: 13.5px; color: var(--ink); }
 .pitch-meta { font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
 .detail-text { font-size: 13px; color: var(--ink-mid); }
 .action-text { font-size: 12px; color: var(--ink-mid); }
 .tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 1px 7px; border-radius: 10px; margin-right: 4px; margin-top: 4px; }
-.tag-coo  { background: var(--accent-light); color: var(--accent); }
-.tag-niina { background: #E8F5E8; color: #2A6A2A; }
-.tag-ceo  { background: #F0EAFF; color: #5820B4; }
+.tag-coo    { background: var(--accent-light); color: var(--accent); }
+.tag-coo-wait { background: #FFF3E0; color: #A5590A; }
+.tag-niina  { background: #E8F5E8; color: #2A6A2A; }
+.tag-ceo    { background: #F0EAFF; color: #5820B4; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .tag-niina { background: #082008; color: #60C060; }
   :root:not([data-theme="light"]) .tag-ceo   { background: #180E30; color: #B090FF; }
+  :root:not([data-theme="light"]) .tag-coo-wait { background: #2A1806; color: #F0A050; }
 }
 :root[data-theme="dark"] .tag-niina { background: #082008; color: #60C060; }
 :root[data-theme="dark"] .tag-ceo   { background: #180E30; color: #B090FF; }
+:root[data-theme="dark"] .tag-coo-wait { background: #2A1806; color: #F0A050; }
 
 .dl-date { font-weight: 700; font-size: 13px; }
 .dl-soon  { color: #B53020; }
@@ -151,14 +166,49 @@ td { padding: 14px 14px; vertical-align: top; }
 .dl-far   { color: var(--ink-muted); }
 .dl-none  { color: var(--ink-faint); font-size: 12px; font-weight: 400; }
 .dl-days  { display: block; font-size: 10px; font-weight: 400; color: var(--ink-faint); margin-top: 1px; }
+.dl-label { display:block; font-size: 11px; color: var(--ink-mid); margin-top: 2px; }
 
-/* Divider label */
+.dl-pill {
+  display:inline-flex; flex-direction:column; align-items:flex-start; gap:1px;
+  padding:6px 10px; border-radius:8px; min-width:88px;
+}
+.dl-pill.p-soon { background:#FFF0EE; }
+.dl-pill.p-mid  { background:#FFF8EE; }
+.dl-pill.p-far  { background:var(--surface2); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .dl-pill.p-soon { background:#280A08; }
+  :root:not([data-theme="light"]) .dl-pill.p-mid  { background:#281408; }
+  :root:not([data-theme="light"]) .dl-pill.p-far  { background:var(--surface2); }
+}
+:root[data-theme="dark"] .dl-pill.p-soon { background:#280A08; }
+:root[data-theme="dark"] .dl-pill.p-mid  { background:#281408; }
+:root[data-theme="dark"] .dl-pill.p-far  { background:var(--surface2); }
+.urg-track { width:100%; height:4px; border-radius:2px; background:var(--border); margin-top:5px; overflow:hidden; }
+.urg-fill  { height:100%; border-radius:2px; }
+.urg-fill.p-soon { background:#D05030; }
+.urg-fill.p-mid  { background:#C4900A; }
+.urg-fill.p-far  { background:var(--ink-faint); }
+
+/* mini stage stepper */
+.stepper-mini { display:flex; align-items:center; gap:0; margin-top:10px; }
+.stepper-mini .sm-step { display:flex; align-items:center; }
+.stepper-mini .sm-dot {
+  width:8px; height:8px; border-radius:50%; background:var(--surface);
+  border:2px solid var(--ink-faint); flex:none;
+}
+.stepper-mini .sm-line { width:16px; height:2px; background:var(--border); flex:none; }
+.stepper-mini .sm-line.done { background: var(--ink-faint); }
+.stepper-mini .sm-step.done .sm-dot { background:var(--ink-faint); border-color:var(--ink-faint); }
+.stepper-mini .sm-step.current .sm-dot { border-color: var(--row-accent, var(--accent)); background: var(--row-accent, var(--accent)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--row-accent, var(--accent)) 22%, transparent); }
+.stepper-mini .sm-step.paused .sm-dot { border-color:#B8A050; background:var(--surface); border-style:dashed; }
+.sm-current-label { font-size:11px; font-weight:700; color: var(--row-accent, var(--accent)); margin-left:8px; white-space:nowrap; }
+.sm-current-label.paused { color:#9A7A1A; }
+
 .section-label {
   font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-faint); padding: 8px 14px 4px; background: var(--surface2);
   border-bottom: 1px solid var(--border);
 }
-/* Footer */
 footer { margin-top: 32px; font-size: 11px; color: var(--ink-faint); text-align: center; }
 </style>
 </head>
@@ -171,14 +221,17 @@ footer { margin-top: 32px; font-size: 11px; color: var(--ink-faint); text-align:
   </div>
   <div class="hdr-right">
     <div class="hdr-date" id="js-date"></div>
-    <div class="badge-updated" id="js-upd"></div>
+    <div class="badge-updated">更新: 2026/9/15</div>
   </div>
 </div>
+<div class="hdr-note">「次の予定」列＝提出締切、または結果・審査状況が分かる次の日。詳しい選考フローと勝ち筋は「9期 表彰選考マップ」を参照。</div>
 
 <div class="summary-row">
   <div class="summary-chip chip-urgent" id="cnt-urgent"></div>
-  <div class="summary-chip chip-wait"   id="cnt-wait"></div>
   <div class="summary-chip chip-ceo"    id="cnt-ceo"></div>
+  <div class="summary-chip chip-wait"   id="cnt-wait"></div>
+  <div class="summary-chip chip-hold"   id="cnt-hold"></div>
+  <div class="summary-chip chip-unclear" id="cnt-unclear"></div>
 </div>
 
 <div class="tbl-wrap">
@@ -189,91 +242,164 @@ footer { margin-top: 32px; font-size: 11px; color: var(--ink-faint); text-align:
       <th class="td-status">ステータス</th>
       <th class="td-detail">現在の状況</th>
       <th class="td-action">次のアクション</th>
-      <th class="td-dl">締切</th>
+      <th class="td-dl">次の予定</th>
     </tr>
   </thead>
   <tbody id="js-tbody"></tbody>
 </table>
 </div>
 
-<footer id="js-footer"></footer>
+<footer>最終更新: 2026年9月15日 — 次の灯株式会社</footer>
 
 <script>
 var PITCHES = [
   {
     group: 'urgent',
-    name: 'JVA — Japan Venture Awards 第26回',
+    name: 'JVA — Japan Venture Awards（第26回）',
     meta: '中小機構主催 / 経産省後援',
     status: 'urgent',
     stLabel: '緊急対応中',
-    detail: '2次審査資料を作成中。COO最終確認依頼を提出済（9/15）。担当: 島津',
-    tags: [['tag-niina', '島津担当'], ['tag-coo', 'COO確認済']],
-    action: '資料を最終版に仕上げて提出',
-    dl: '2026-09-24'
+    detail: '2次審査書類（応募様式・会社案内・製品説明資料・財務諸表3期分）を作成中。COOに最終確認を依頼中（承認待ち）。担当: 島津',
+    tags: [['tag-niina', '島津担当'], ['tag-coo-wait', 'COO確認中']],
+    action: 'COOの確認を受けて資料を最終版に仕上げ、提出',
+    dlType: 'deadline',
+    dl: '2026-09-24',
+    dlLabel: '社内提出目標',
+    stages: [
+      {t:'応募', s:'done'}, {t:'1次審査', s:'done'}, {t:'2次審査', s:'current'}, {t:'面接', s:'future'}, {t:'結果', s:'future'}
+    ]
   },
   {
     group: 'urgent',
-    name: 'Great Place to Work® 認定',
-    meta: 'ランキング入り申請',
+    name: 'GPTW「働きがいのある会社」ランキング',
+    meta: 'GPTW Japan／ランキング入り申請',
     status: 'inprog',
     stLabel: '資料作成中',
-    detail: 'ランキング入りのための審査資料を作成中。',
+    detail: '認定は取得済み。ランキング入りに向けた審査資料を作成中。',
     tags: [],
     action: '9/30までに申請資料を提出',
-    dl: '2026-09-30'
+    dlType: 'deadline',
+    dl: '2026-09-30',
+    dlLabel: '社内提出目標',
+    stages: [
+      {t:'エントリー', s:'done'}, {t:'認定獲得', s:'done'}, {t:'ランキング資料', s:'current'}
+    ]
   },
   {
     group: 'ceo',
-    name: 'EY アントレプレナー・オブ・ザ・イヤー 2026',
-    meta: 'EY Japan',
+    name: 'EYアントレプレナー・オブ・ザ・イヤー2026',
+    meta: 'EY Japan／中国地区 Regional Vitalization Leader部門',
     status: 'ceo',
     stLabel: '🦄 CEO対応',
-    detail: 'CEO対応フェーズ。準備・代表ピッチ手続きを進める段階。',
+    detail: 'Challenging Spirit部門選出＝部門賞受賞確定。10/16セレモニーでの最終ピッチに向けてCEO本人の調整中。',
     tags: [['tag-ceo', '🦄 CEO担当']],
-    action: 'CEO確認のうえエントリー提出',
-    dl: '2026-10-16'
+    action: 'CEOの最終ピッチ準備・登壇調整を進める',
+    dlType: 'result',
+    dl: '2026-10-16',
+    dlLabel: 'セレモニー・大賞決定',
+    stages: [
+      {t:'選出（部門賞確定）', s:'done'}, {t:'最終ピッチ', s:'current'}, {t:'大賞決定', s:'future'}
+    ]
   },
   {
     group: 'wait',
-    name: 'NIKKEI THE PITCH 2026–27',
+    name: 'WE AT',
+    meta: '一般社団法人WE AT／Track1 Planetary Wellbeing',
+    status: 'wait',
+    stLabel: '審査待ち',
+    detail: '提出済み。1次選考（書類）中。',
+    tags: [],
+    action: '1次選考結果の連絡を待つ',
+    dlType: 'result',
+    dl: '2026-10-05',
+    dlLabel: '1次選考通過チーム発表',
+    stages: [
+      {t:'応募', s:'done'}, {t:'1次選考', s:'current'}, {t:'2次選考', s:'future'}, {t:'最終選考', s:'future'}
+    ]
+  },
+  {
+    group: 'wait',
+    name: 'NIKKEI THE PITCH（SOCIAL部門）',
     meta: '日本経済新聞社',
     status: 'wait',
     stLabel: '審査待ち',
-    detail: 'エントリー済み。審査結果を待っている状態。',
+    detail: 'SOCIAL部門のみ応募完了。9月の一次審査（書類）中。',
     tags: [],
-    action: '審査結果の連絡を待つ',
-    dl: null
+    action: 'ファイナリスト発表を待つ',
+    dlType: 'result',
+    dl: '2026-10-15',
+    dlLabel: 'ファイナリスト10組発表',
+    stages: [
+      {t:'応募', s:'done'}, {t:'1次審査', s:'current'}, {t:'ファイナリスト', s:'future'}, {t:'最終審査', s:'future'}
+    ]
   },
   {
     group: 'wait',
-    name: 'WE AT Challenge 2026 Track 1',
-    meta: '',
+    name: '気候変動アクション環境大臣表彰',
+    meta: '環境省／開発・製品化部門・自薦',
     status: 'wait',
     stLabel: '審査待ち',
-    detail: 'エントリー済み。審査結果を待っている状態。',
+    detail: '提出済み。選考委員会による審査待ち。',
     tags: [],
-    action: '審査結果の連絡を待つ',
-    dl: null
+    action: '結果発表を待つ',
+    dlType: 'result',
+    dl: '2026-11-10',
+    dlLabel: '11月上旬〜中旬 結果発表',
+    stages: [
+      {t:'応募', s:'done'}, {t:'審査中', s:'current'}, {t:'結果発表', s:'future'}, {t:'表彰式', s:'future'}
+    ]
   },
   {
     group: 'wait',
-    name: '気候変動アクション',
-    meta: '',
+    name: '環境省グッドライフアワード2026',
+    meta: '環境省／第14回・企業部門',
     status: 'wait',
     stLabel: '審査待ち',
-    detail: 'エントリー済み。審査結果を待っている状態。',
+    detail: '受付完了（受付番号 GLA14-202）。審査結果を待っている状態。',
     tags: [],
-    action: '審査結果の連絡を待つ',
-    dl: null
+    action: '審査結果メールを待つ',
+    dlType: 'result',
+    dl: '2026-11-15',
+    dlLabel: '11月中旬頃 審査結果をメール通知',
+    stages: [
+      {t:'応募', s:'done'}, {t:'審査中', s:'current'}, {t:'結果通知', s:'future'}, {t:'表彰式', s:'future'}
+    ]
+  },
+  {
+    group: 'hold',
+    name: '健康経営優良法人2027',
+    meta: '経済産業省・日本健康会議／中小規模法人部門',
+    status: 'hold',
+    stLabel: '対応保留中',
+    detail: '協会けんぽ「健康宣言」の実施状況確認が唯一のブロッカー。現在は着手しない方針。',
+    tags: [],
+    action: '着手再開のタイミングを判断（申請期間は10/16まで）',
+    dlType: 'deadline',
+    dl: '2026-10-16',
+    dlLabel: '申請期限（保留中）',
+    stages: [
+      {t:'申請準備', s:'paused'}, {t:'審査', s:'future'}, {t:'内定', s:'future'}, {t:'認定', s:'future'}
+    ]
+  },
+  {
+    group: 'unclear',
+    name: 'ホワイト企業認定',
+    meta: '',
+    status: 'unclear',
+    stLabel: '情報未整理',
+    detail: '原資料に詳細情報の記載なし。制度概要・スケジュールの整理待ち。',
+    tags: [],
+    action: '制度概要とスケジュールを確認・整理する',
+    dlType: 'none',
+    dl: null,
+    dlLabel: '',
+    stages: []
   }
 ];
-
-function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
 function formatDate(d) {
   return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
 }
-
 function parseDL(s) {
   if (!s) return null;
   var p = s.split('-');
@@ -281,14 +407,12 @@ function parseDL(s) {
   d.setHours(0,0,0,0);
   return d;
 }
-
 function dlClass(days) {
-  if (days < 0) return 'dl-soon'; // overdue
+  if (days < 0) return 'dl-soon';
   if (days <= 14) return 'dl-soon';
   if (days <= 30) return 'dl-mid';
   return 'dl-far';
 }
-
 function dlDateStr(s) {
   var p = s.split('-');
   return (parseInt(p[1])) + '/' + parseInt(p[2]);
@@ -296,34 +420,29 @@ function dlDateStr(s) {
 
 var TODAY = new Date();
 TODAY.setHours(0,0,0,0);
+document.getElementById('js-date').textContent = '本日: ' + formatDate(TODAY);
 
-// Header date and badge
-document.getElementById('js-date').textContent = formatDate(TODAY);
-document.getElementById('js-upd').textContent = '本日更新';
-document.getElementById('js-footer').textContent = '最終更新: ' + formatDate(TODAY) + ' — 次の灯株式会社';
+var counts = { urgent: 0, wait: 0, ceo: 0, hold: 0, unclear: 0 };
+for (var i = 0; i < PITCHES.length; i++) counts[PITCHES[i].group]++;
+document.getElementById('cnt-urgent').textContent  = '対応中 ' + counts.urgent + '件';
+document.getElementById('cnt-ceo').textContent     = '🦄 CEO対応 ' + counts.ceo + '件';
+document.getElementById('cnt-wait').textContent    = '審査待ち ' + counts.wait + '件';
+document.getElementById('cnt-hold').textContent    = '保留中 ' + counts.hold + '件';
+document.getElementById('cnt-unclear').textContent = '情報未整理 ' + counts.unclear + '件';
 
-// Summary counts
-var cntUrgent = 0, cntWait = 0, cntCeo = 0;
-for (var i = 0; i < PITCHES.length; i++) {
-  var g = PITCHES[i].group;
-  if (g === 'urgent') cntUrgent++;
-  else if (g === 'wait') cntWait++;
-  else if (g === 'ceo') cntCeo++;
-}
-document.getElementById('cnt-urgent').textContent = '対応中 ' + cntUrgent + '件';
-document.getElementById('cnt-wait').textContent   = '審査待ち ' + cntWait + '件';
-document.getElementById('cnt-ceo').textContent    = '🦄 CEO対応 ' + cntCeo + '件';
-
-// Build rows
 var tbody = document.getElementById('js-tbody');
 var lastGroup = null;
-
-var groupLabels = { urgent: '締切あり・対応中', wait: 'エントリー済・審査待ち', ceo: '🦄 CEO対応フェーズ' };
+var groupLabels = {
+  urgent: '締切あり・対応中',
+  ceo: '🦄 CEO対応フェーズ',
+  wait: 'エントリー済・審査待ち',
+  hold: '対応保留中',
+  unclear: '情報未整理'
+};
 
 for (var j = 0; j < PITCHES.length; j++) {
   var p = PITCHES[j];
 
-  // Section label row
   if (p.group !== lastGroup) {
     var labelRow = document.createElement('tr');
     var labelCell = document.createElement('td');
@@ -335,26 +454,47 @@ for (var j = 0; j < PITCHES.length; j++) {
     lastGroup = p.group;
   }
 
-  var dlDate = parseDL(p.dl);
+  var dlDate = p.dl ? parseDL(p.dl) : null;
   var daysLeft = dlDate ? Math.round((dlDate - TODAY) / 86400000) : null;
-
-  // Status badge class
   var stClass = 'st-' + p.status;
 
-  // Tags HTML
   var tagsHtml = '';
   for (var t = 0; t < p.tags.length; t++) {
     tagsHtml += '<span class="tag ' + p.tags[t][0] + '">' + p.tags[t][1] + '</span>';
   }
 
-  // Deadline HTML
   var dlHtml = '';
-  if (p.dl) {
-    var dc = dlClass(daysLeft);
-    var daysLabel = daysLeft < 0 ? '超過' : (daysLeft === 0 ? '本日' : daysLeft + '日後');
-    dlHtml = '<span class="dl-date ' + dc + '">' + dlDateStr(p.dl) + '</span><span class="dl-days">(' + daysLabel + ')</span>';
-  } else {
+  if (p.dlType === 'none' || !p.dl) {
     dlHtml = '<span class="dl-none">未定</span>';
+  } else {
+    var dc = dlClass(daysLeft);
+    var pClass = dc === 'dl-soon' ? 'p-soon' : dc === 'dl-mid' ? 'p-mid' : 'p-far';
+    var daysLabel = daysLeft < 0 ? '経過（要確認）' : (daysLeft === 0 ? '本日' : 'あと' + daysLeft + '日');
+    var fillPct = daysLeft < 0 ? 100 : Math.max(6, Math.min(100, Math.round(100 - (daysLeft / 60 * 100))));
+    dlHtml = '<div class="dl-pill ' + pClass + '">'
+           + '<span class="dl-date ' + dc + '">' + dlDateStr(p.dl) + '</span>'
+           + '<span class="dl-days">(' + daysLabel + ')</span>'
+           + (p.dlLabel ? '<span class="dl-label">' + p.dlLabel + '</span>' : '')
+           + '<div class="urg-track"><div class="urg-fill ' + pClass + '" style="width:' + fillPct + '%"></div></div>'
+           + '</div>';
+  }
+
+  var stepperHtml = '';
+  if (p.stages && p.stages.length) {
+    var parts = [];
+    var curLabel = '', curPaused = false;
+    for (var s = 0; s < p.stages.length; s++) {
+      var st = p.stages[s];
+      if (s > 0) {
+        var prevDone = p.stages[s-1].s === 'done';
+        parts.push('<span class="sm-line' + (prevDone ? ' done' : '') + '"></span>');
+      }
+      parts.push('<span class="sm-step ' + st.s + '" title="' + st.t + '"><span class="sm-dot"></span></span>');
+      if (st.s === 'current' || st.s === 'paused') { curLabel = st.t; curPaused = st.s === 'paused'; }
+    }
+    stepperHtml = '<div class="stepper-mini">' + parts.join('')
+      + (curLabel ? '<span class="sm-current-label' + (curPaused ? ' paused' : '') + '">' + curLabel + '</span>' : '')
+      + '</div>';
   }
 
   var tr = document.createElement('tr');
@@ -372,7 +512,8 @@ for (var j = 0; j < PITCHES.length; j++) {
   var td3 = document.createElement('td');
   td3.className = 'td-detail';
   td3.innerHTML = '<div class="detail-text">' + p.detail + '</div>'
-    + (tagsHtml ? '<div>' + tagsHtml + '</div>' : '');
+    + (tagsHtml ? '<div>' + tagsHtml + '</div>' : '')
+    + stepperHtml;
 
   var td4 = document.createElement('td');
   td4.className = 'td-action';
