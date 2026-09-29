@@ -1,535 +1,650 @@
-<!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>アワード進捗 — 次の灯</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=BIZ+UDPMincho:wght@400;700&display=swap">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>9期 表彰選考マップ</title>
 <style>
-:root {
-  --bg: #F2F4F2;
-  --surface: #FFFFFF;
-  --surface2: #EAEEEA;
-  --ink: #141C17;
-  --ink-mid: #445244;
-  --ink-muted: #6B7D6A;
-  --ink-faint: #9AAA98;
-  --accent: #0B3D30;
-  --accent-light: #DFF0EB;
-  --flame: #D96B10;
-  --flame-bg: #FEF0E3;
-  --flame-border: #F0B870;
-  --border: #D4DDD4;
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
+
+:root{
+  --paper:#F7F4EC;
+  --surface:#FFFFFF;
+  --surface-sunken:#F0ECE0;
+  --ink:#221D14;
+  --ink-2:#5A5340;
+  --ink-3:#8C8468;
+  --border:#E1D9C4;
+  --accent:#B5622A;
+  --accent-ink:#7A3F16;
+  --teal:#1F6F63;
+  --good:#2F7D4F;
+  --good-bg:#E4F1E7;
+  --progress:#2C6E96;
+  --progress-bg:#E3EDF3;
+  --prep:#B8811E;
+  --prep-bg:#F6ECD6;
+  --critical:#AD3B2C;
+  --critical-bg:#F7E4DF;
+  --closed:#8C8468;
+  --closed-bg:#EDE9DB;
+  --none:#B7AF97;
+  --ceo:#7A4FA0;
+  --ceo-bg:#EFE7F5;
+  --shadow: 0 1px 2px rgba(34,29,20,0.06), 0 8px 24px -12px rgba(34,29,20,0.18);
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0C1410; --surface: #172018; --surface2: #1E2A1E;
-    --ink: #E2EBE2; --ink-mid: #9AAA98; --ink-muted: #6A806A; --ink-faint: #3A503A;
-    --accent: #2FAA80; --accent-light: #0A2820;
-    --flame: #E88030; --flame-bg: #281808; --flame-border: #6A3A10;
-    --border: #283A28;
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#17140E;
+    --surface:#201B12;
+    --surface-sunken:#1A160F;
+    --ink:#F1EBDB;
+    --ink-2:#C9C0A6;
+    --ink-3:#968E74;
+    --border:#3A3222;
+    --accent:#E08A4B;
+    --accent-ink:#F2B587;
+    --teal:#57B0A1;
+    --good:#5FBE85;
+    --good-bg:#1E3324;
+    --progress:#74B4DD;
+    --progress-bg:#1C2E3B;
+    --prep:#E6B24C;
+    --prep-bg:#3A2E12;
+    --critical:#E28374;
+    --critical-bg:#3B211B;
+    --closed:#A69C7F;
+    --closed-bg:#2A2518;
+    --none:#635B44;
+    --ceo:#C4A6E0;
+    --ceo-bg:#2E2338;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.6);
   }
 }
-:root[data-theme="dark"] {
-  --bg: #0C1410; --surface: #172018; --surface2: #1E2A1E;
-  --ink: #E2EBE2; --ink-mid: #9AAA98; --ink-muted: #6A806A; --ink-faint: #3A503A;
-  --accent: #2FAA80; --accent-light: #0A2820;
-  --flame: #E88030; --flame-bg: #281808; --flame-border: #6A3A10;
-  --border: #283A28;
+:root[data-theme="dark"]{
+  --paper:#17140E;
+  --surface:#201B12;
+  --surface-sunken:#1A160F;
+  --ink:#F1EBDB;
+  --ink-2:#C9C0A6;
+  --ink-3:#968E74;
+  --border:#3A3222;
+  --accent:#E08A4B;
+  --accent-ink:#F2B587;
+  --teal:#57B0A1;
+  --good:#5FBE85;
+  --good-bg:#1E3324;
+  --progress:#74B4DD;
+  --progress-bg:#1C2E3B;
+  --prep:#E6B24C;
+  --prep-bg:#3A2E12;
+  --critical:#E28374;
+  --critical-bg:#3B211B;
+  --closed:#A69C7F;
+  --closed-bg:#2A2518;
+  --none:#635B44;
+  --ceo:#C4A6E0;
+  --ceo-bg:#2E2338;
+  --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.6);
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: 14px;
-  line-height: 1.7;
-  padding: 28px 20px 56px;
-  min-height: 100vh;
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  font-feature-settings:"palt";
+  padding-inline:16px;
 }
-.hdr {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  flex-wrap: wrap; gap: 12px; margin-bottom: 10px;
-}
-.hdr-title {
-  font-family: 'BIZ UDPMincho', serif;
-  font-size: 22px; font-weight: 700; color: var(--accent); line-height: 1.2;
-}
-.hdr-sub { font-size: 12px; color: var(--ink-muted); margin-top: 3px; }
-.hdr-right { text-align: right; }
-.hdr-date { font-size: 12px; color: var(--ink-muted); }
-.badge-updated {
-  display: inline-block; margin-top: 5px;
-  font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 20px;
-  background: var(--flame-bg); color: var(--flame); border: 1px solid var(--flame-border);
-}
-.hdr-note { font-size: 11.5px; color: var(--ink-muted); margin-bottom: 20px; }
-.summary-row {
-  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px;
-}
-.summary-chip {
-  padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
-  border: 1px solid transparent;
-}
-.chip-urgent { background: #FFF0EE; color: #B53020; border-color: #F0B0A8; }
-.chip-wait   { background: #EEF6FF; color: #215E82; border-color: #A8CCEE; }
-.chip-ceo    { background: #F0EAFF; color: #5820B4; border-color: #C4AAF0; }
-.chip-hold   { background: #F3F1EA; color: #7A6A45; border-color: #D8CBA8; }
-.chip-unclear{ background: #F0F0F0; color: #6B6B6B; border-color: #D0D0D0; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .chip-urgent { background: #280A08; color: #FF9080; border-color: #6A2020; }
-  :root:not([data-theme="light"]) .chip-wait   { background: #081828; color: #70B8E8; border-color: #204060; }
-  :root:not([data-theme="light"]) .chip-ceo    { background: #180E30; color: #B090FF; border-color: #402878; }
-  :root:not([data-theme="light"]) .chip-hold   { background: #24200E; color: #D8C080; border-color: #4A3E1C; }
-  :root:not([data-theme="light"]) .chip-unclear{ background: #1C1C1C; color: #9A9A9A; border-color: #3A3A3A; }
-}
-:root[data-theme="dark"] .chip-urgent { background: #280A08; color: #FF9080; border-color: #6A2020; }
-:root[data-theme="dark"] .chip-wait   { background: #081828; color: #70B8E8; border-color: #204060; }
-:root[data-theme="dark"] .chip-ceo    { background: #180E30; color: #B090FF; border-color: #402878; }
-:root[data-theme="dark"] .chip-hold   { background: #24200E; color: #D8C080; border-color: #4A3E1C; }
-:root[data-theme="dark"] .chip-unclear{ background: #1C1C1C; color: #9A9A9A; border-color: #3A3A3A; }
+.wrap{max-width:1180px;margin:0 auto;padding-block:36px 64px;}
 
-.tbl-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); }
-table { width: 100%; border-collapse: collapse; min-width: 660px; }
-thead th {
-  background: var(--surface2); padding: 10px 14px;
-  font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-  color: var(--ink-muted); text-align: left; white-space: nowrap;
-  border-bottom: 2px solid var(--border);
-}
-tbody tr { border-bottom: 1px solid var(--border); }
-tbody tr:last-child { border-bottom: none; }
-tbody tr:hover { background: var(--surface2); }
-td { padding: 14px 14px; vertical-align: top; }
-.td-name { min-width: 190px; }
-.td-status { width: 130px; }
-.td-action { min-width: 170px; }
-.td-dl { width: 168px; white-space: nowrap; }
+h1,h2,h3{font-family:"Shippori Mincho",serif;font-weight:600;margin:0;text-wrap:balance;}
 
-.row-urgent  { --row-accent: #D05030; }
-.row-wait    { --row-accent: #4090C0; }
-.row-ceo     { --row-accent: #8050C0; }
-.row-hold    { --row-accent: #B8A050; }
-.row-unclear { --row-accent: #A0A0A0; }
-.row-urgent  td:first-child { border-left: 3px solid #D05030; }
-.row-wait    td:first-child { border-left: 3px solid #4090C0; }
-.row-ceo     td:first-child { border-left: 3px solid #8050C0; }
-.row-hold    td:first-child { border-left: 3px solid #B8A050; }
-.row-unclear td:first-child { border-left: 3px solid #A0A0A0; }
+header.page{
+  display:flex;flex-direction:column;gap:6px;margin-bottom:28px;
+  padding-bottom:22px;border-bottom:1px solid var(--border);
+}
+.eyebrow{
+  font-size:12.5px;letter-spacing:.14em;color:var(--accent);font-weight:700;
+}
+h1{font-size:clamp(26px,4vw,34px);color:var(--ink);}
+.page-sub{color:var(--ink-2);font-size:14.5px;line-height:1.7;max-width:62ch;}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:10px;font-size:12.5px;color:var(--ink-3);}
+.meta-row b{color:var(--ink-2);font-weight:700;}
+.update-note{
+  margin-top:12px;background:var(--progress-bg);border:1px solid color-mix(in srgb, var(--progress) 30%, var(--border));
+  border-radius:9px;padding:10px 14px;font-size:12.5px;color:var(--ink-2);line-height:1.7;
+}
+.update-note b{color:var(--progress);font-weight:700;}
 
-.st {
-  display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px;
-  border-radius: 20px; white-space: nowrap;
+/* stat tiles */
+.stats{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:26px;
 }
-.st-urgent { background: #FFF0EE; color: #B53020; border: 1px solid #F0B0A8; }
-.st-inprog { background: #FFF8EE; color: #9A5C08; border: 1px solid #E8C888; }
-.st-wait   { background: #EEF6FF; color: #215E82; border: 1px solid #A8CCEE; }
-.st-ceo    { background: #F0EAFF; color: #5820B4; border: 1px solid #C4AAF0; }
-.st-hold   { background: #F3F1EA; color: #7A6A45; border: 1px solid #D8CBA8; }
-.st-unclear{ background: #F0F0F0; color: #6B6B6B; border: 1px solid #D0D0D0; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .st-urgent { background:#280A08; color:#FF9080; border-color:#6A2020; }
-  :root:not([data-theme="light"]) .st-inprog { background:#281408; color:#FFB060; border-color:#6A3A10; }
-  :root:not([data-theme="light"]) .st-wait   { background:#081828; color:#70B8E8; border-color:#204060; }
-  :root:not([data-theme="light"]) .st-ceo    { background:#180E30; color:#B090FF; border-color:#402878; }
-  :root:not([data-theme="light"]) .st-hold   { background:#24200E; color:#D8C080; border-color:#4A3E1C; }
-  :root:not([data-theme="light"]) .st-unclear{ background:#1C1C1C; color:#9A9A9A; border-color:#3A3A3A; }
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr);}}
+.stat{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:14px 16px;box-shadow:var(--shadow);
 }
-:root[data-theme="dark"] .st-urgent { background:#280A08; color:#FF9080; border-color:#6A2020; }
-:root[data-theme="dark"] .st-inprog { background:#281408; color:#FFB060; border-color:#6A3A10; }
-:root[data-theme="dark"] .st-wait   { background:#081828; color:#70B8E8; border-color:#204060; }
-:root[data-theme="dark"] .st-ceo    { background:#180E30; color:#B090FF; border-color:#402878; }
-:root[data-theme="dark"] .st-hold   { background:#24200E; color:#D8C080; border-color:#4A3E1C; }
-:root[data-theme="dark"] .st-unclear{ background:#1C1C1C; color:#9A9A9A; border-color:#3A3A3A; }
+.stat .n{font-family:"Shippori Mincho",serif;font-size:28px;font-variant-numeric:tabular-nums;line-height:1;}
+.stat .l{font-size:12px;color:var(--ink-3);margin-top:6px;letter-spacing:.02em;}
+.stat.good .n{color:var(--good);}
+.stat.progress .n{color:var(--progress);}
+.stat.prep .n{color:var(--prep);}
+.stat.closed .n{color:var(--closed);}
 
-.pitch-name { font-weight: 600; font-size: 13.5px; color: var(--ink); }
-.pitch-meta { font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
-.detail-text { font-size: 13px; color: var(--ink-mid); }
-.action-text { font-size: 12px; color: var(--ink-mid); }
-.tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 1px 7px; border-radius: 10px; margin-right: 4px; margin-top: 4px; }
-.tag-coo    { background: var(--accent-light); color: var(--accent); }
-.tag-coo-wait { background: #FFF3E0; color: #A5590A; }
-.tag-niina  { background: #E8F5E8; color: #2A6A2A; }
-.tag-ceo    { background: #F0EAFF; color: #5820B4; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .tag-niina { background: #082008; color: #60C060; }
-  :root:not([data-theme="light"]) .tag-ceo   { background: #180E30; color: #B090FF; }
-  :root:not([data-theme="light"]) .tag-coo-wait { background: #2A1806; color: #F0A050; }
+/* attention panel */
+section.attention{
+  background:var(--prep-bg);border:1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  border-radius:12px;padding:18px 20px;margin-bottom:30px;
 }
-:root[data-theme="dark"] .tag-niina { background: #082008; color: #60C060; }
-:root[data-theme="dark"] .tag-ceo   { background: #180E30; color: #B090FF; }
-:root[data-theme="dark"] .tag-coo-wait { background: #2A1806; color: #F0A050; }
+.attention h2{font-size:16px;color:var(--accent-ink);display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.attention h2 .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;}
+.attn-list{display:flex;flex-direction:column;gap:10px;}
+.attn-item{
+  display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);
+  border-radius:9px;padding:11px 14px;
+}
+.attn-item .badge{
+  flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12.5px;font-variant-numeric:tabular-nums;
+}
+.attn-item.warn .badge{background:var(--prep);}
+.attn-item p{margin:0;font-size:13.5px;line-height:1.65;color:var(--ink-2);}
+.attn-item p b{color:var(--ink);font-weight:700;}
 
-.dl-date { font-weight: 700; font-size: 13px; }
-.dl-soon  { color: #B53020; }
-.dl-mid   { color: #9A5C08; }
-.dl-far   { color: var(--ink-muted); }
-.dl-none  { color: var(--ink-faint); font-size: 12px; font-weight: 400; }
-.dl-days  { display: block; font-size: 10px; font-weight: 400; color: var(--ink-faint); margin-top: 1px; }
-.dl-label { display:block; font-size: 11px; color: var(--ink-mid); margin-top: 2px; }
+/* section headers */
+section.block{margin-bottom:36px;}
+.block h2{font-size:18px;margin-bottom:14px;}
+.block .sub{font-size:12.5px;color:var(--ink-3);margin-top:-8px;margin-bottom:14px;}
 
-.dl-pill {
-  display:inline-flex; flex-direction:column; align-items:flex-start; gap:1px;
-  padding:6px 10px; border-radius:8px; min-width:88px;
+/* result schedule list */
+.result-list{display:flex;flex-direction:column;gap:8px;}
+.result-row{
+  display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:12px 16px;box-shadow:var(--shadow);
 }
-.dl-pill.p-soon { background:#FFF0EE; }
-.dl-pill.p-mid  { background:#FFF8EE; }
-.dl-pill.p-far  { background:var(--surface2); }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .dl-pill.p-soon { background:#280A08; }
-  :root:not([data-theme="light"]) .dl-pill.p-mid  { background:#281408; }
-  :root:not([data-theme="light"]) .dl-pill.p-far  { background:var(--surface2); }
+.result-row .no{
+  flex:none;width:26px;height:26px;border-radius:50%;background:var(--surface-sunken);color:var(--ink-2);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;font-variant-numeric:tabular-nums;
 }
-:root[data-theme="dark"] .dl-pill.p-soon { background:#280A08; }
-:root[data-theme="dark"] .dl-pill.p-mid  { background:#281408; }
-:root[data-theme="dark"] .dl-pill.p-far  { background:var(--surface2); }
-.urg-track { width:100%; height:4px; border-radius:2px; background:var(--border); margin-top:5px; overflow:hidden; }
-.urg-fill  { height:100%; border-radius:2px; }
-.urg-fill.p-soon { background:#D05030; }
-.urg-fill.p-mid  { background:#C4900A; }
-.urg-fill.p-far  { background:var(--ink-faint); }
+.result-row .datebox{
+  flex:none;width:118px;text-align:left;border-right:1px solid var(--border);padding-right:14px;
+}
+.result-row .datebox .d{
+  font-family:"Shippori Mincho",serif;font-size:19px;font-weight:600;color:var(--ink);line-height:1.3;
+  font-variant-numeric:tabular-nums;
+}
+.result-row .datebox .cd{font-size:11px;margin-top:2px;font-weight:700;}
+.result-row .datebox .cd.soon{color:var(--critical);}
+.result-row .datebox .cd.mid{color:var(--accent-ink);}
+.result-row .datebox .cd.far{color:var(--ink-3);}
+.result-row .info{flex:1;min-width:0;}
+.result-row .info .rname{font-size:13.5px;font-weight:700;color:var(--ink);}
+.result-row .info .rdetail{font-size:12.5px;color:var(--ink-2);margin-top:2px;line-height:1.55;}
+.result-row .info .rnote{font-size:11.5px;color:var(--ink-3);margin-top:3px;line-height:1.5;}
+.result-row.tbd{opacity:.72;}
+.result-row.tbd .datebox{border-right-color:var(--border);}
+.result-row.tbd .datebox .d{color:var(--ink-3);font-size:14.5px;}
+@media (max-width:560px){
+  .result-row{flex-wrap:wrap;}
+  .result-row .datebox{width:auto;border-right:none;padding-right:0;}
+}
 
-/* mini stage stepper */
-.stepper-mini { display:flex; align-items:center; gap:0; margin-top:10px; }
-.stepper-mini .sm-step { display:flex; align-items:center; }
-.stepper-mini .sm-dot {
-  width:8px; height:8px; border-radius:50%; background:var(--surface);
-  border:2px solid var(--ink-faint); flex:none;
+/* timeline */
+.timeline{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:20px 22px 16px;box-shadow:var(--shadow);overflow-x:auto;
 }
-.stepper-mini .sm-line { width:16px; height:2px; background:var(--border); flex:none; }
-.stepper-mini .sm-line.done { background: var(--ink-faint); }
-.stepper-mini .sm-step.done .sm-dot { background:var(--ink-faint); border-color:var(--ink-faint); }
-.stepper-mini .sm-step.current .sm-dot { border-color: var(--row-accent, var(--accent)); background: var(--row-accent, var(--accent)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--row-accent, var(--accent)) 22%, transparent); }
-.stepper-mini .sm-step.paused .sm-dot { border-color:#B8A050; background:var(--surface); border-style:dashed; }
-.sm-current-label { font-size:11px; font-weight:700; color: var(--row-accent, var(--accent)); margin-left:8px; white-space:nowrap; }
-.sm-current-label.paused { color:#9A7A1A; }
+.tl-scale{position:relative;height:26px;margin-left:168px;border-bottom:1px solid var(--border);min-width:640px;}
+.tl-month{position:absolute;top:0;font-size:11px;color:var(--ink-3);letter-spacing:.02em;transform:translateX(2px);}
+.tl-month::before{content:"";position:absolute;left:-2px;top:6px;bottom:-9999px;width:1px;background:var(--border);}
+.tl-rows{min-width:640px;}
+.tl-row{display:flex;align-items:center;gap:0;padding:9px 0;border-bottom:1px dashed var(--border);}
+.tl-row:last-child{border-bottom:none;}
+.tl-row .rlabel{width:168px;flex:none;font-size:12.5px;color:var(--ink-2);padding-right:10px;}
+.tl-row .rlabel b{color:var(--ink);font-weight:700;}
+.tl-track{position:relative;flex:1;height:20px;}
+.tl-track .today{
+  position:absolute;top:-6px;bottom:-6px;width:1.5px;background:var(--accent);
+}
+.tl-dot{
+  position:absolute;top:50%;width:11px;height:11px;border-radius:50%;
+  transform:translate(-50%,-50%);border:2px solid var(--surface);cursor:default;
+}
+.tl-dot.pastdue{outline:2px solid var(--critical);outline-offset:1px;}
+.tl-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px;margin-left:168px;font-size:11.5px;color:var(--ink-3);}
+.tl-legend span{display:inline-flex;align-items:center;gap:6px;}
+.tl-legend i{width:9px;height:9px;border-radius:50%;display:inline-block;}
+.today-label{position:absolute;top:-22px;font-size:10.5px;color:var(--accent);font-weight:700;white-space:nowrap;transform:translateX(-50%);}
 
-.section-label {
-  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--ink-faint); padding: 8px 14px 4px; background: var(--surface2);
-  border-bottom: 1px solid var(--border);
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
+.chip{
+  border:1px solid var(--border);background:var(--surface);color:var(--ink-2);
+  font-size:12.5px;font-weight:500;padding:7px 14px;border-radius:999px;cursor:pointer;
+  transition:background .15s, color .15s, border-color .15s;
 }
-footer { margin-top: 32px; font-size: 11px; color: var(--ink-faint); text-align: center; }
+.chip:hover{border-color:var(--accent);}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:18px 18px 16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;
+}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+.card .no{font-family:"Shippori Mincho",serif;font-size:13px;color:var(--ink-3);}
+.card h3{font-size:15.5px;line-height:1.5;font-weight:600;}
+.card .org{font-size:12px;color:var(--ink-3);}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;
+  padding:4px 10px;border-radius:999px;white-space:nowrap;flex:none;
+}
+.pill i{width:6px;height:6px;border-radius:50%;display:inline-block;}
+.pill.won{background:var(--good-bg);color:var(--good);}
+.pill.progress{background:var(--progress-bg);color:var(--progress);}
+.pill.prep{background:var(--prep-bg);color:var(--prep);}
+.pill.closed{background:var(--closed-bg);color:var(--closed);text-decoration:line-through;}
+.pill.none{background:var(--surface-sunken);color:var(--ink-3);border:1px dashed var(--border);}
+.ceo-badge{background:var(--ceo-bg);color:var(--ceo);border:1px solid color-mix(in srgb, var(--ceo) 40%, var(--border));display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;width:fit-content;}
+.card .badges-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:-2px;}
+.card .deadline{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;}
+.result-tag{
+  display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 8px;
+  background:var(--progress-bg);border-radius:7px;padding:6px 10px;
+}
+.result-tag.tbd{background:var(--surface-sunken);}
+.result-tag .rl{font-size:10.5px;color:var(--progress);font-weight:700;letter-spacing:.03em;}
+.result-tag.tbd .rl{color:var(--ink-3);}
+.result-tag .rv{font-family:"Shippori Mincho",serif;font-size:15px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;}
+.result-tag .rx{flex-basis:100%;font-size:11.5px;color:var(--ink-2);}
+.card .status-line{font-size:13px;color:var(--ink-2);line-height:1.6;}
+
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:12.5px;line-height:1.6;}
+.kv dt{color:var(--ink-3);white-space:nowrap;}
+.kv dd{margin:0;color:var(--ink-2);}
+.kv .win dd{color:var(--teal);font-weight:500;}
+.kv .risk dd{color:var(--accent-ink);}
+
+.stepper{display:flex;flex-direction:column;gap:0;margin-top:2px;}
+.step{display:flex;gap:9px;align-items:flex-start;padding:3px 0;position:relative;}
+.step .node{
+  flex:none;width:9px;height:9px;border-radius:50%;margin-top:4px;
+  border:2px solid var(--border);background:var(--surface);
+}
+.step.done .node{background:var(--ink-3);border-color:var(--ink-3);}
+.step.current .node{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);}
+.step:not(:last-child)::before{
+  content:"";position:absolute;left:4px;top:14px;bottom:-3px;width:1px;background:var(--border);
+}
+.step p{margin:0;font-size:12px;line-height:1.55;color:var(--ink-3);}
+.step.done p{color:var(--ink-2);}
+.step.current p{color:var(--ink);font-weight:700;}
+
+details.flow-detail{margin-top:2px;}
+details.flow-detail summary{
+  font-size:11.5px;color:var(--teal);cursor:pointer;list-style:none;font-weight:700;
+}
+details.flow-detail summary::-webkit-details-marker{display:none;}
+details.flow-detail summary::before{content:"▸ ";}
+details.flow-detail[open] summary::before{content:"▾ ";}
+details.flow-detail .full{margin-top:8px;}
+
+.check-flag{
+  display:flex;gap:6px;align-items:flex-start;background:var(--critical-bg);border:1px solid color-mix(in srgb, var(--critical) 30%, var(--border));
+  border-radius:8px;padding:8px 10px;font-size:11.5px;color:var(--critical);line-height:1.6;
+}
+
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-size:11.5px;color:var(--ink-3);line-height:1.8;}
+
+@media (max-width:600px){
+  .tl-scale,.tl-legend{margin-left:100px;}
+  .tl-row .rlabel{width:100px;font-size:11px;}
+}
 </style>
-</head>
-<body>
 
-<div class="hdr">
-  <div class="hdr-left">
-    <div class="hdr-title">アワード・ピッチ 進捗ダッシュボード</div>
-    <div class="hdr-sub">次の灯株式会社</div>
-  </div>
-  <div class="hdr-right">
-    <div class="hdr-date" id="js-date"></div>
-    <div class="badge-updated">更新: 2026/9/15</div>
-  </div>
+<div class="wrap">
+  <header class="page">
+    <div class="eyebrow">経営企画室 ／ 戦略人事室</div>
+    <h1>9期 表彰選考マップ</h1>
+    <p class="page-sub">外部表彰・ピッチエントリー 全10件（⑧健康経営優良法人2027は一旦管理対象から除外）の選考ステータスと今後のマイルストーンを一覧化。前回は選考フローの整理まで完了。ここではその先の「今どこにいて、次に何をすべきか」を可視化する。</p>
+    <div class="meta-row">
+      <span><b>データ基準日</b>：2026/8/10時点（アップロード資料）</span>
+      <span><b>本日</b>：2026/9/29</span>
+      <span style="color:var(--accent-ink);font-weight:700;">現在の最優先：③GPTWランキング入り追加資料（9/30締切・COO確認中）／⑤JVA面接審査（日程未定）に向けた準備</span>
+    </div>
+    <div class="update-note">
+      <b>直近更新（9/29）</b>：⑤JVA＝2次審査書類を提出完了、面接審査待ちへ。③GPTW＝ランキング入り向け追加資料の提出期限が9/30に迫り、現在COO確認中。ランキング結果発表は12月下旬予定。⑨NIKKEI THE PITCH＝一次審査（書類）で落選、来期（10期）に再挑戦予定。
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="stat good"><div class="n">2</div><div class="l">受賞・認定確定<br>③④</div></div>
+    <div class="stat progress"><div class="n">4</div><div class="l">提出済・審査中<br>⑤⑥⑦⑪</div></div>
+    <div class="stat prep"><div class="n">0</div><div class="l">準備中（保留）<br>—</div></div>
+    <div class="stat closed"><div class="n">3</div><div class="l">見送り<br>①②⑨</div></div>
+    <div class="stat"><div class="n" style="color:var(--ink-3);">1</div><div class="l">情報未整理<br>⑩</div></div>
+  </section>
+
+  <section class="attention">
+    <h2><span class="dot"></span>現在対応中</h2>
+    <div class="attn-list">
+      <div class="attn-item">
+        <div class="badge">③</div>
+        <p><b>GPTW「働きがいのある会社」ランキング</b> — ランキング入りに向けた追加資料の提出期限が<b>9/30（水）</b>に迫る。現在COO確認中、承認待ちの最優先事項。</p>
+      </div>
+      <div class="attn-item">
+        <div class="badge">⑤</div>
+        <p><b>Japan Venture Awards（JVA）</b> — 2次審査書類の提出が完了。</p>
+      </div>
+      <div class="attn-item warn">
+        <div class="badge">⑨</div>
+        <p><b>NIKKEI THE PITCH（SOCIAL部門）</b> — 一次審査（書類）で落選。ファイナリスト10組には非選出。来期（10期）再挑戦。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>結果発表はいつ？</h2>
+    <p class="sub">受賞可否・選考結果がわかる日を、近い順に並べたもの。</p>
+    <div class="result-list" id="resultList"></div>
+  </section>
+
+  <section class="block">
+    <h2>今後のマイルストーン（2026年9月〜2027年3月）</h2>
+    <p class="sub">結果発表・表彰式・最終選考など、今後の主要な予定日を時系列で表示。◎は経過済み／未確認の締切。</p>
+    <div class="timeline">
+      <div class="tl-scale">
+        <span class="tl-month" style="left:0%">9月</span>
+        <span class="tl-month" style="left:14.2%">10月</span>
+        <span class="tl-month" style="left:28.8%">11月</span>
+        <span class="tl-month" style="left:42.9%">12月</span>
+        <span class="tl-month" style="left:57.5%">1月</span>
+        <span class="tl-month" style="left:72.2%">2月</span>
+        <span class="tl-month" style="left:85.4%">3月</span>
+      </div>
+      <div class="tl-rows">
+        <div class="tl-row">
+          <div class="rlabel"><b>③</b> GPTW（追加資料）</div>
+          <div class="tl-track">
+            <div class="today" style="left:13.2%"></div>
+            <div class="tl-dot" style="left:13.7%;background:var(--prep);" title="ランキング入り追加資料 提出期限 9/30（水）・COO確認中"></div>
+            <div class="tl-dot" style="left:54.2%;background:var(--progress);" title="ランキング結果発表 12月下旬予定"></div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="rlabel"><b>⑦</b> グッドライフアワード</div>
+          <div class="tl-track">
+            <div class="today" style="left:13.2%"></div>
+            <div class="tl-dot" style="left:5.7%;background:var(--progress);" title="応募締切 9/13（提出済）"></div>
+            <div class="tl-dot" style="left:40.1%;background:var(--progress);" title="受賞発表 11月下旬予定"></div>
+            <div class="tl-dot" style="left:44.8%;background:var(--progress);" title="表彰式 12/5（土）予定"></div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="rlabel"><b>④</b> EYアントレプレナー</div>
+          <div class="tl-track">
+            <div class="today" style="left:13.2%"></div>
+            <div class="tl-dot" style="left:21.2%;background:var(--good);" title="セレモニー・最終ピッチ・大賞決定 10/16"></div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="rlabel"><b>⑤</b> Japan Venture Awards</div>
+          <div class="tl-track">
+            <div class="today" style="left:13.2%"></div>
+            <div class="tl-dot" style="left:7.5%;background:var(--good);" title="2次審査書類 提出完了（9月中旬〜下旬）"></div>
+            <div class="tl-dot" style="left:28.8%;background:var(--progress);opacity:.55;" title="面接審査 日程未定（調整中）"></div>
+            <div class="tl-dot" style="left:49.5%;background:var(--progress);" title="結果発表・表彰式 12/15（火）＠虎ノ門ヒルズフォーラム"></div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="rlabel"><b>⑥</b> 気候変動アクション環境大臣表彰</div>
+          <div class="tl-track">
+            <div class="today" style="left:13.2%"></div>
+            <div class="tl-dot" style="left:33.0%;background:var(--progress);" title="結果発表 11月上旬〜中旬"></div>
+            <div class="tl-dot" style="left:49.5%;background:var(--progress);" title="表彰式 12月中旬頃"></div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="rlabel"><b>⑪</b> WE AT</div>
+          <div class="tl-track">
+            <div class="today" style="left:13.2%"></div>
+            <div class="tl-dot" style="left:16.0%;background:var(--progress);" title="1次選考通過チーム発表 10/5（月）"></div>
+            <div class="tl-dot" style="left:25.9%;background:var(--progress);" title="2次選考（オンライン面談・英語）10/26（月）〜10/27（火）"></div>
+            <div class="tl-dot" style="left:29.2%;background:var(--progress);" title="2次選考通過チーム発表 11/2（月）"></div>
+            <div class="tl-dot" style="left:41.0%;background:var(--progress);" title="最終選考会 11/27（金）＠TIB（現地登壇・英語）"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tl-legend">
+        <span><i style="background:var(--good);"></i>受賞・認定確定</span>
+        <span><i style="background:var(--progress);"></i>提出済・審査中</span>
+        <span><i style="background:var(--prep);"></i>準備中</span>
+        <span><i style="background:var(--accent);width:3px;height:11px;border-radius:1px;"></i>本日（9/29）</span>
+        <span>◎ 赤枠＝経過済／要確認の日程</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>案件一覧</h2>
+    <div class="filters" id="filters">
+      <button class="chip" data-f="all" aria-pressed="true">すべて（10）</button>
+      <button class="chip" data-f="won" aria-pressed="false">受賞・認定確定（2）</button>
+      <button class="chip" data-f="progress" aria-pressed="false">提出済・審査中（4）</button>
+      <button class="chip" data-f="prep" aria-pressed="false">準備中（0）</button>
+      <button class="chip" data-f="closed" aria-pressed="false">見送り（3）</button>
+    </div>
+    <div class="grid" id="cardGrid"></div>
+  </section>
+
+  <footer>
+    データ出典：「0817経営企画室_アワード関連2026スケジュール - 外部表彰・ピッチ一覧」（8/10時点ステータス）。9/29時点でニーナ氏より個別ステータス（JVA・GPTW・NIKKEI THE PITCH）の更新情報を反映。⑧健康経営優良法人2027は一旦管理対象から除外（番号は欠番）。今後のマイルストーン日程のうち「頃」「予定」と付記されたものは概算表示。⑩ホワイト企業認定は原資料に詳細記載なし。本ダッシュボードは記録の可視化を目的とし、各案件の最新ステータスは都度現場で確認すること。
+  </footer>
 </div>
-<div class="hdr-note">「次の予定」列＝提出締切、または結果・審査状況が分かる次の日。詳しい選考フローと勝ち筋は「9期 表彰選考マップ」を参照。</div>
-
-<div class="summary-row">
-  <div class="summary-chip chip-urgent" id="cnt-urgent"></div>
-  <div class="summary-chip chip-ceo"    id="cnt-ceo"></div>
-  <div class="summary-chip chip-wait"   id="cnt-wait"></div>
-  <div class="summary-chip chip-hold"   id="cnt-hold"></div>
-  <div class="summary-chip chip-unclear" id="cnt-unclear"></div>
-</div>
-
-<div class="tbl-wrap">
-<table>
-  <thead>
-    <tr>
-      <th class="td-name">ピッチ名</th>
-      <th class="td-status">ステータス</th>
-      <th class="td-detail">現在の状況</th>
-      <th class="td-action">次のアクション</th>
-      <th class="td-dl">次の予定</th>
-    </tr>
-  </thead>
-  <tbody id="js-tbody"></tbody>
-</table>
-</div>
-
-<footer>最終更新: 2026年9月15日 — 次の灯株式会社</footer>
 
 <script>
-var PITCHES = [
-  {
-    group: 'urgent',
-    name: 'JVA — Japan Venture Awards（第26回）',
-    meta: '中小機構主催 / 経産省後援',
-    status: 'urgent',
-    stLabel: '緊急対応中',
-    detail: '2次審査書類（応募様式・会社案内・製品説明資料・財務諸表3期分）を作成中。COOに最終確認を依頼中（承認待ち）。担当: 島津',
-    tags: [['tag-niina', '島津担当'], ['tag-coo-wait', 'COO確認中']],
-    action: 'COOの確認を受けて資料を最終版に仕上げ、提出',
-    dlType: 'deadline',
-    dl: '2026-09-24',
-    dlLabel: '社内提出目標',
-    stages: [
-      {t:'応募', s:'done'}, {t:'1次審査', s:'done'}, {t:'2次審査', s:'current'}, {t:'面接', s:'future'}, {t:'結果', s:'future'}
-    ]
-  },
-  {
-    group: 'urgent',
-    name: 'GPTW「働きがいのある会社」ランキング',
-    meta: 'GPTW Japan／ランキング入り申請',
-    status: 'inprog',
-    stLabel: '資料作成中',
-    detail: '認定は取得済み。ランキング入りに向けた審査資料を作成中。',
-    tags: [],
-    action: '9/30までに申請資料を提出',
-    dlType: 'deadline',
-    dl: '2026-09-30',
-    dlLabel: '社内提出目標',
-    stages: [
-      {t:'エントリー', s:'done'}, {t:'認定獲得', s:'done'}, {t:'ランキング資料', s:'current'}
-    ]
-  },
-  {
-    group: 'ceo',
-    name: 'EYアントレプレナー・オブ・ザ・イヤー2026',
-    meta: 'EY Japan／中国地区 Regional Vitalization Leader部門',
-    status: 'ceo',
-    stLabel: '🦄 CEO対応',
-    detail: 'Challenging Spirit部門選出＝部門賞受賞確定。10/16セレモニーでの最終ピッチに向けてCEO本人の調整中。',
-    tags: [['tag-ceo', '🦄 CEO担当']],
-    action: 'CEOの最終ピッチ準備・登壇調整を進める',
-    dlType: 'result',
-    dl: '2026-10-16',
-    dlLabel: 'セレモニー・大賞決定',
-    stages: [
-      {t:'選出（部門賞確定）', s:'done'}, {t:'最終ピッチ', s:'current'}, {t:'大賞決定', s:'future'}
-    ]
-  },
-  {
-    group: 'wait',
-    name: 'WE AT',
-    meta: '一般社団法人WE AT／Track1 Planetary Wellbeing',
-    status: 'wait',
-    stLabel: '審査待ち',
-    detail: '提出済み。1次選考（書類）中。',
-    tags: [],
-    action: '1次選考結果の連絡を待つ',
-    dlType: 'result',
-    dl: '2026-10-05',
-    dlLabel: '1次選考通過チーム発表',
-    stages: [
-      {t:'応募', s:'done'}, {t:'1次選考', s:'current'}, {t:'2次選考', s:'future'}, {t:'最終選考', s:'future'}
-    ]
-  },
-  {
-    group: 'wait',
-    name: 'NIKKEI THE PITCH（SOCIAL部門）',
-    meta: '日本経済新聞社',
-    status: 'wait',
-    stLabel: '審査待ち',
-    detail: 'SOCIAL部門のみ応募完了。9月の一次審査（書類）中。',
-    tags: [],
-    action: 'ファイナリスト発表を待つ',
-    dlType: 'result',
-    dl: '2026-10-15',
-    dlLabel: 'ファイナリスト10組発表',
-    stages: [
-      {t:'応募', s:'done'}, {t:'1次審査', s:'current'}, {t:'ファイナリスト', s:'future'}, {t:'最終審査', s:'future'}
-    ]
-  },
-  {
-    group: 'wait',
-    name: '気候変動アクション環境大臣表彰',
-    meta: '環境省／開発・製品化部門・自薦',
-    status: 'wait',
-    stLabel: '審査待ち',
-    detail: '提出済み。選考委員会による審査待ち。',
-    tags: [],
-    action: '結果発表を待つ',
-    dlType: 'result',
-    dl: '2026-11-10',
-    dlLabel: '11月上旬〜中旬 結果発表',
-    stages: [
-      {t:'応募', s:'done'}, {t:'審査中', s:'current'}, {t:'結果発表', s:'future'}, {t:'表彰式', s:'future'}
-    ]
-  },
-  {
-    group: 'wait',
-    name: '環境省グッドライフアワード2026',
-    meta: '環境省／第14回・企業部門',
-    status: 'wait',
-    stLabel: '審査待ち',
-    detail: '受付完了（受付番号 GLA14-202）。審査結果を待っている状態。',
-    tags: [],
-    action: '審査結果メールを待つ',
-    dlType: 'result',
-    dl: '2026-11-15',
-    dlLabel: '11月中旬頃 審査結果をメール通知',
-    stages: [
-      {t:'応募', s:'done'}, {t:'審査中', s:'current'}, {t:'結果通知', s:'future'}, {t:'表彰式', s:'future'}
-    ]
-  },
-  {
-    group: 'hold',
-    name: '健康経営優良法人2027',
-    meta: '経済産業省・日本健康会議／中小規模法人部門',
-    status: 'hold',
-    stLabel: '対応保留中',
-    detail: '協会けんぽ「健康宣言」の実施状況確認が唯一のブロッカー。現在は着手しない方針。',
-    tags: [],
-    action: '着手再開のタイミングを判断（申請期間は10/16まで）',
-    dlType: 'deadline',
-    dl: '2026-10-16',
-    dlLabel: '申請期限（保留中）',
-    stages: [
-      {t:'申請準備', s:'paused'}, {t:'審査', s:'future'}, {t:'内定', s:'future'}, {t:'認定', s:'future'}
-    ]
-  },
-  {
-    group: 'unclear',
-    name: 'ホワイト企業認定',
-    meta: '',
-    status: 'unclear',
-    stLabel: '情報未整理',
-    detail: '原資料に詳細情報の記載なし。制度概要・スケジュールの整理待ち。',
-    tags: [],
-    action: '制度概要とスケジュールを確認・整理する',
-    dlType: 'none',
-    dl: null,
-    dlLabel: '',
-    stages: []
-  }
-];
+(function(){
+  const AWARDS = [
+    {no:1, cat:'closed', name:'第8回 Sustainable Japan Award 2026', org:'株式会社ジャパンタイムズキューブ', deadline:'2026/6/30（終了）', status:'見送り（時間不足のため未応募）', win:'定量CO₂×循環経済の独自性', risk:'英文対応の要否が最後まで未確定のまま時間切れ', resultSort:null, resultText:'対象外', resultDetail:'未応募のため結果発表なし', flow:[]},
+    {no:2, cat:'closed', name:'グッドキャリア企業アワード2026（イノベーション賞狙い）', org:'厚生労働省', deadline:'2026/7/14（終了）', status:'見送り（時間不足のため未応募）', win:'9期制度刷新×定着率97%', risk:'障害者雇用の達成が応募条件必須', resultSort:null, resultText:'対象外', resultDetail:'未応募のため結果発表なし', flow:[]},
+    {no:3, cat:'won', name:'GPTW「働きがいのある会社」ランキング', org:'GPTW Japan', deadline:'追加資料提出 9/30（水）締切・COO確認中', status:'認定は獲得済み。ランキング入りに向けた追加資料の提出期限が9/30に迫り、現在COO確認中・承認待ちの最優先事項', target:'次の灯', win:'制度刷新後のスコア安定を待って実施', risk:'9/30締切に間に合わない場合、ランキング入りの機会を逃すおそれ', resultSort:'2026-12-25', resultText:'12月下旬', resultDetail:'認定は取得済み。ランキング結果は12月下旬に発表予定', flow:[
+      {t:'エントリー', done:true},{t:'認定獲得', done:true},{t:'ランキング入り向け追加資料をCOO確認中（9/30締切）', current:true}
+    ]},
+    {no:4, cat:'won', ceoFlag:true, name:'EYアントレプレナー・オブ・ザ・イヤー2026（Regional Vitalization Leader部門＝中国地区）', org:'EY Japan', deadline:'10月16日 セレモニー', status:'Challenging Spirit部門選出＝部門賞受賞確定。最終ピッチに向けて調整中', target:'CEO', win:'18億→25億→100億のJ-Curve成長ストーリー、地方発×循環経済×社長の人格', risk:'本人合意・推薦者確保が必須。会社ではなく社長個人が評価・登壇の対象', resultSort:'2026-10-16', resultText:'10/16（金）', resultDetail:'セレモニーで最終ピッチ後、Challenging Spirit部門の大賞（1名）が決定', flow:[
+      {t:'エントリー・書類審査', done:true},{t:'Challenging Spirit部門選出（4名）＝部門賞受賞確定', done:true},{t:'10/16 セレモニー・代表者による最終ピッチ', current:true},{t:'Challenging Spirit部門 大賞決定（1名）'}
+    ]},
+    {no:5, cat:'progress', ceoFlag:true, name:'Japan Venture Awards（第26回）', org:'中小企業基盤整備機構（中小機構）', deadline:'2次審査書類 提出完了', status:'2次審査書類の提出が完了。面接審査の日程は未定（調整中）', target:'', win:'旧アイテムワンからの経営再建×GPTW認定＝「再挑戦起業賞」に直結。DPFリビルド×PGM資源循環による地域資源循環モデル＝「地域課題解決賞」にも合致。外国人CEOによる海外展開は審査基準「多様性」の加点材料。', risk:'面接審査（日程未定）での訴求内容の準備が今後の鍵。現地面談の可能性あり。', resultSort:'2026-10-25', resultText:'10月下旬頃', resultDetail:'2次審査の結果通知（面接進出の可否）', resultNote:'面接審査の日程は未定（調整中）。最終の結果発表・表彰式は12/15（火）＠虎ノ門ヒルズフォーラム', flow:[
+      {t:'①公式HPエントリーフォーム入力', done:true},{t:'②1次審査：8/19締切（結果は全員に通知・9月上旬頃）', done:true},{t:'③2次審査：応募様式・会社案内・製品説明資料・財務諸表3期分を提出（提出完了）', done:true},{t:'④面接審査：日程未定（調整中）。現地面談の可能性あり', current:true},{t:'⑤結果発表・表彰式：2026/12/15（火）＠虎ノ門ヒルズフォーラム'}
+    ]},
+    {no:6, cat:'progress', name:'気候変動アクション環境大臣表彰（開発・製品化部門・自薦）', org:'環境省', deadline:'2026/8/7', status:'提出済み。選考委員会による審査待ち', target:'', win:'DPFリビルド×CO₂削減の技術訴求', risk:'競合が大手中心。技術面の説得力が勝負', resultSort:'2026-11-10', resultText:'11月上旬〜中旬', resultDetail:'環境大臣表彰の受賞可否が決定', resultNote:'表彰式は12月中旬頃（気候変動アクション大賞はさらに選考のうえ決定）', flow:[
+      {t:'8/7 応募締切', done:true},{t:'選考委員会による審査（貢献度・波及性・持続性・刷新性）', current:true},{t:'表彰候補者選出 → 環境大臣による決定'},{t:'気候変動アクション環境大臣表彰 受賞'},{t:'受賞者の中からさらに選考 → 気候変動アクション大賞'},{t:'11月上旬〜中旬 結果発表 / 12月中旬頃 表彰式'}
+    ]},
+    {no:7, cat:'progress', name:'環境省グッドライフアワード2026（第14回・企業部門）', org:'環境省', deadline:'2026/9/13（日）', status:'受付完了（受付番号 GLA14-202）。審査結果は11月中旬頃にメールで通知予定', target:'', win:'都市鉱山×レアメタル循環、地域循環共生圏の実践', risk:'実行委員会特別賞の選択方針、会社基礎情報の確定待ち', resultSort:'2026-11-15', resultText:'11月中旬頃', resultDetail:'審査結果をメールで通知（受付番号 GLA14-202）', resultNote:'受賞の場合は環境省グッドライフアワード公式サイトにも掲載。表彰式は12/5（土）予定', flow:[
+      {t:'応募締切 2026/9/13（日）・受付完了（受付番号 GLA14-202）', done:true},{t:'審査・選考 → 審査結果をメールで通知：11月中旬頃', current:true},{t:'受賞取組の公式サイト掲載・各賞発表：2026年11月下旬予定'},{t:'表彰式：2026年12月5日（土）予定'}
+    ]},
+    {no:9, cat:'closed', name:'NIKKEI THE PITCH（SOCIAL部門）', org:'NIKKEI THE PITCH（日本経済新聞社）', deadline:'2026/8/24（月）応募・9月一次審査', status:'一次審査（書類）で落選。ファイナリスト10組には非選出。来期（10期）の再挑戦を予定', target:'SOCIAL：起業10年目以内、社会課題解決に取り組む団体・個人・学生', win:'審査軸は社会性・事業性・革新性。審査員は東大教授・全国社会福祉協議会会長・ユーグレナCo-CEO等。都市鉱山・DPF再生によるCO₂削減ストーリーが直球で刺さる。予選ピッチなしで実務負荷も軽い。', risk:'応募締切がJVA（8/19）と近接し作業優先順位の調整が必要だった。来期に向けては書類のブラッシュアップが課題。', resultSort:null, resultText:'落選（一次審査）', resultDetail:'書類による一次審査を通過せず、ファイナリスト10組には非選出', resultNote:'来期（10期）のNIKKEI THE PITCH再挑戦を予定', flow:[
+      {t:'応募期間：6/22〜8/24（完了）', done:true},{t:'9月 書類一次審査 実施', done:true},{t:'一次審査結果：落選（ファイナリスト10組に非選出）', done:true},{t:'来期（10期）NIKKEI THE PITCH 再挑戦を予定', current:true}
+    ]},
+    {no:10, cat:'none', name:'ホワイト企業認定', org:'（原資料に記載なし）', deadline:'情報未整理', status:'原資料に詳細情報の記載なし。制度概要・スケジュールの整理待ち', target:'', win:'', risk:'', resultSort:null, resultText:'不明', resultDetail:'原資料に記載なし', flow:[]},
+    {no:11, cat:'progress', ceoFlag:true, name:'WE AT', org:'一般社団法人WE AT', deadline:'2026/8/31（月）23:59', status:'提出済み。1次選考中（書類）。10/5に1次選考通過チームが発表される', target:'スタートアップ、起業前の学生・研究者・企業内プロジェクト、個人、団体（グローバル展開を視野に入れていることが前提条件）', win:'都市鉱山・レアメタル回収・DPF再生によるCO₂削減は、Track1「Planetary Wellbeing」（地球環境）の課題設定に直球で合う。', risk:'応募条件「グローバル展開」を国内中心の現事業フレームでどう訴求するか要検討。2次選考（オンライン面談）・最終選考会（現地登壇）とも英語対応が必須。応募締切がNIKKEI THE PITCH（8/24）と近接。', resultSort:'2026-10-05', resultText:'10/5（月）', resultDetail:'1次選考通過チームが発表される（書類選考の可否）', resultNote:'2次選考（オンライン面談・英語）は10/26〜10/27、2次選考通過発表は11/2、最終選考会は11/27＠TIB（現地登壇・英語）', flow:[
+      {t:'8/31（月）エントリー締切・1次選考開始（書類選考）', done:true},{t:'10/5（月）1次選考通過チーム発表', current:true},{t:'10/26（月）〜10/27（火）2次選考（オンライン面談・英語）'},{t:'11/2（月）2次選考通過チーム発表'},{t:'11/27（金）最終選考会＠TIB（現地登壇・英語）'}
+    ]}
+  ];
 
-function formatDate(d) {
-  return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
-}
-function parseDL(s) {
-  if (!s) return null;
-  var p = s.split('-');
-  var d = new Date(parseInt(p[0]), parseInt(p[1])-1, parseInt(p[2]));
-  d.setHours(0,0,0,0);
-  return d;
-}
-function dlClass(days) {
-  if (days < 0) return 'dl-soon';
-  if (days <= 14) return 'dl-soon';
-  if (days <= 30) return 'dl-mid';
-  return 'dl-far';
-}
-function dlDateStr(s) {
-  var p = s.split('-');
-  return (parseInt(p[1])) + '/' + parseInt(p[2]);
-}
+  const CAT_LABEL = {won:'受賞・認定確定', progress:'提出済・審査中', prep:'準備中', closed:'見送り', none:'情報未整理'};
 
-var TODAY = new Date();
-TODAY.setHours(0,0,0,0);
-document.getElementById('js-date').textContent = '本日: ' + formatDate(TODAY);
-
-var counts = { urgent: 0, wait: 0, ceo: 0, hold: 0, unclear: 0 };
-for (var i = 0; i < PITCHES.length; i++) counts[PITCHES[i].group]++;
-document.getElementById('cnt-urgent').textContent  = '対応中 ' + counts.urgent + '件';
-document.getElementById('cnt-ceo').textContent     = '🦄 CEO対応 ' + counts.ceo + '件';
-document.getElementById('cnt-wait').textContent    = '審査待ち ' + counts.wait + '件';
-document.getElementById('cnt-hold').textContent    = '保留中 ' + counts.hold + '件';
-document.getElementById('cnt-unclear').textContent = '情報未整理 ' + counts.unclear + '件';
-
-var tbody = document.getElementById('js-tbody');
-var lastGroup = null;
-var groupLabels = {
-  urgent: '締切あり・対応中',
-  ceo: '🦄 CEO対応フェーズ',
-  wait: 'エントリー済・審査待ち',
-  hold: '対応保留中',
-  unclear: '情報未整理'
-};
-
-for (var j = 0; j < PITCHES.length; j++) {
-  var p = PITCHES[j];
-
-  if (p.group !== lastGroup) {
-    var labelRow = document.createElement('tr');
-    var labelCell = document.createElement('td');
-    labelCell.colSpan = 5;
-    labelCell.className = 'section-label';
-    labelCell.textContent = groupLabels[p.group];
-    labelRow.appendChild(labelCell);
-    tbody.appendChild(labelRow);
-    lastGroup = p.group;
+  function pill(cat, status){
+    const span = document.createElement('span');
+    span.className = 'pill ' + cat;
+    span.innerHTML = '<i></i>' + CAT_LABEL[cat];
+    return span;
   }
 
-  var dlDate = p.dl ? parseDL(p.dl) : null;
-  var daysLeft = dlDate ? Math.round((dlDate - TODAY) / 86400000) : null;
-  var stClass = 'st-' + p.status;
+  function renderCard(a){
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.cat = a.cat;
 
-  var tagsHtml = '';
-  for (var t = 0; t < p.tags.length; t++) {
-    tagsHtml += '<span class="tag ' + p.tags[t][0] + '">' + p.tags[t][1] + '</span>';
-  }
+    const top = document.createElement('div');
+    top.className = 'top';
+    const left = document.createElement('div');
+    left.innerHTML = '<div class="no">No.'+a.no+'</div><h3>'+a.name+'</h3><div class="org">'+a.org+'</div>';
+    top.appendChild(left);
+    top.appendChild(pill(a.cat));
+    card.appendChild(top);
 
-  var dlHtml = '';
-  if (p.dlType === 'none' || !p.dl) {
-    dlHtml = '<span class="dl-none">未定</span>';
-  } else {
-    var dc = dlClass(daysLeft);
-    var pClass = dc === 'dl-soon' ? 'p-soon' : dc === 'dl-mid' ? 'p-mid' : 'p-far';
-    var daysLabel = daysLeft < 0 ? '経過（要確認）' : (daysLeft === 0 ? '本日' : 'あと' + daysLeft + '日');
-    var fillPct = daysLeft < 0 ? 100 : Math.max(6, Math.min(100, Math.round(100 - (daysLeft / 60 * 100))));
-    dlHtml = '<div class="dl-pill ' + pClass + '">'
-           + '<span class="dl-date ' + dc + '">' + dlDateStr(p.dl) + '</span>'
-           + '<span class="dl-days">(' + daysLabel + ')</span>'
-           + (p.dlLabel ? '<span class="dl-label">' + p.dlLabel + '</span>' : '')
-           + '<div class="urg-track"><div class="urg-fill ' + pClass + '" style="width:' + fillPct + '%"></div></div>'
-           + '</div>';
-  }
-
-  var stepperHtml = '';
-  if (p.stages && p.stages.length) {
-    var parts = [];
-    var curLabel = '', curPaused = false;
-    for (var s = 0; s < p.stages.length; s++) {
-      var st = p.stages[s];
-      if (s > 0) {
-        var prevDone = p.stages[s-1].s === 'done';
-        parts.push('<span class="sm-line' + (prevDone ? ' done' : '') + '"></span>');
-      }
-      parts.push('<span class="sm-step ' + st.s + '" title="' + st.t + '"><span class="sm-dot"></span></span>');
-      if (st.s === 'current' || st.s === 'paused') { curLabel = st.t; curPaused = st.s === 'paused'; }
+    if (a.ceoFlag){
+      const badgesRow = document.createElement('div');
+      badgesRow.className = 'badges-row';
+      const ceo = document.createElement('span');
+      ceo.className = 'ceo-badge';
+      ceo.innerHTML = '🦄 代表・CEO対応';
+      badgesRow.appendChild(ceo);
+      card.appendChild(badgesRow);
     }
-    stepperHtml = '<div class="stepper-mini">' + parts.join('')
-      + (curLabel ? '<span class="sm-current-label' + (curPaused ? ' paused' : '') + '">' + curLabel + '</span>' : '')
-      + '</div>';
+
+    const dl = document.createElement('div');
+    dl.className = 'deadline';
+    dl.textContent = '締切／状況日程：' + a.deadline;
+    card.appendChild(dl);
+
+    if (a.resultText){
+      const rr = document.createElement('div');
+      rr.className = 'result-tag' + (a.resultSort ? '' : ' tbd');
+      rr.innerHTML = '<span class="rl">結果発表</span><span class="rv">' + a.resultText + '</span>' + (a.resultDetail ? '<span class="rx">'+a.resultDetail+'</span>' : '');
+      card.appendChild(rr);
+    }
+
+    const sl = document.createElement('div');
+    sl.className = 'status-line';
+    sl.textContent = a.status;
+    card.appendChild(sl);
+
+    if (a.flagCheck){
+      const cf = document.createElement('div');
+      cf.className = 'check-flag';
+      cf.textContent = '⚠ ' + a.flagCheck;
+      card.appendChild(cf);
+    }
+
+    if (a.target || a.win || a.risk){
+      const kv = document.createElement('dl');
+      kv.className = 'kv';
+      const addRow = (label, value, color) => {
+        const dt = document.createElement('dt'); dt.textContent = label;
+        const dd = document.createElement('dd'); dd.textContent = value;
+        if (color) dd.style.color = color;
+        kv.appendChild(dt); kv.appendChild(dd);
+      };
+      if (a.target) addRow('対象', a.target);
+      if (a.win) addRow('勝ち筋', a.win, 'var(--teal)');
+      if (a.risk) addRow('リスク', a.risk, 'var(--accent-ink)');
+      card.appendChild(kv);
+    }
+
+    if (a.flow && a.flow.length){
+      const details = document.createElement('details');
+      details.className = 'flow-detail';
+      const summary = document.createElement('summary');
+      summary.textContent = '選考フローを見る';
+      details.appendChild(summary);
+      const full = document.createElement('div');
+      full.className = 'full';
+      const stepper = document.createElement('div');
+      stepper.className = 'stepper';
+      a.flow.forEach(s=>{
+        const step = document.createElement('div');
+        step.className = 'step' + (s.done ? ' done' : '') + (s.current ? ' current' : '');
+        step.innerHTML = '<span class="node"></span><p>'+s.t+'</p>';
+        stepper.appendChild(step);
+      });
+      full.appendChild(stepper);
+      details.appendChild(full);
+      card.appendChild(details);
+    }
+
+    return card;
   }
 
-  var tr = document.createElement('tr');
-  tr.className = 'row-' + p.group;
+  function renderResultList(){
+    const box = document.getElementById('resultList');
+    const withDate = AWARDS.filter(a => a.resultSort && a.cat !== 'closed');
+    const withoutDate = AWARDS.filter(a => !a.resultSort && a.cat !== 'closed');
+    withDate.sort((x,y)=> new Date(x.resultSort) - new Date(y.resultSort));
 
-  var td1 = document.createElement('td');
-  td1.className = 'td-name';
-  td1.innerHTML = '<div class="pitch-name">' + p.name + '</div>'
-    + (p.meta ? '<div class="pitch-meta">' + p.meta + '</div>' : '');
+    const now = new Date();
+    withDate.forEach(a=>{
+      const target = new Date(a.resultSort + 'T00:00:00+09:00');
+      const diffDays = Math.ceil((target - now) / 86400000);
 
-  var td2 = document.createElement('td');
-  td2.className = 'td-status';
-  td2.innerHTML = '<span class="st ' + stClass + '">' + p.stLabel + '</span>';
+      const row = document.createElement('div');
+      row.className = 'result-row';
 
-  var td3 = document.createElement('td');
-  td3.className = 'td-detail';
-  td3.innerHTML = '<div class="detail-text">' + p.detail + '</div>'
-    + (tagsHtml ? '<div>' + tagsHtml + '</div>' : '')
-    + stepperHtml;
+      const no = document.createElement('div'); no.className='no'; no.textContent = a.no;
 
-  var td4 = document.createElement('td');
-  td4.className = 'td-action';
-  td4.innerHTML = '<div class="action-text">' + p.action + '</div>';
+      const datebox = document.createElement('div'); datebox.className='datebox';
+      const d = document.createElement('div'); d.className='d';
+      d.textContent = a.resultText;
+      datebox.appendChild(d);
+      const cd = document.createElement('div');
+      cd.className = 'cd ' + (diffDays < 0 ? 'soon' : diffDays <= 30 ? 'soon' : diffDays <= 90 ? 'mid' : 'far');
+      cd.textContent = diffDays < 0 ? '発表日を経過（要確認）' : diffDays === 0 ? '本日発表' : 'あと' + diffDays + '日';
+      datebox.appendChild(cd);
+      row.appendChild(no);
+      row.appendChild(datebox);
 
-  var td5 = document.createElement('td');
-  td5.className = 'td-dl';
-  td5.innerHTML = dlHtml;
+      const info = document.createElement('div'); info.className='info';
+      const rname = document.createElement('div'); rname.className='rname'; rname.textContent = a.name + (a.ceoFlag ? ' 🦄' : '');
+      const rdetail = document.createElement('div'); rdetail.className='rdetail'; rdetail.textContent = a.resultDetail;
+      info.appendChild(rname); info.appendChild(rdetail);
+      if (a.resultNote){
+        const rnote = document.createElement('div'); rnote.className='rnote'; rnote.textContent = '※ ' + a.resultNote;
+        info.appendChild(rnote);
+      }
+      row.appendChild(info);
+      box.appendChild(row);
+    });
 
-  tr.appendChild(td1);
-  tr.appendChild(td2);
-  tr.appendChild(td3);
-  tr.appendChild(td4);
-  tr.appendChild(td5);
-  tbody.appendChild(tr);
-}
+    withoutDate.forEach(a=>{
+      const row = document.createElement('div');
+      row.className = 'result-row tbd';
+      const no = document.createElement('div'); no.className='no'; no.textContent = a.no;
+      const datebox = document.createElement('div'); datebox.className='datebox';
+      const d = document.createElement('div'); d.className='d'; d.textContent = a.resultText;
+      datebox.appendChild(d);
+      row.appendChild(no); row.appendChild(datebox);
+      const info = document.createElement('div'); info.className='info';
+      const rname = document.createElement('div'); rname.className='rname'; rname.textContent = a.name + (a.ceoFlag ? ' 🦄' : '');
+      const rdetail = document.createElement('div'); rdetail.className='rdetail'; rdetail.textContent = a.resultDetail;
+      info.appendChild(rname); info.appendChild(rdetail);
+      row.appendChild(info);
+      box.appendChild(row);
+    });
+  }
+
+  const grid = document.getElementById('cardGrid');
+  function draw(filter){
+    grid.innerHTML = '';
+    AWARDS.filter(a => filter==='all' || a.cat===filter).forEach(a=> grid.appendChild(renderCard(a)));
+  }
+
+  let current = 'all';
+  try { const saved = localStorage.getItem('tsuginohi-awards-filter'); if (saved) current = saved; } catch(e){}
+
+  const chips = document.querySelectorAll('#filters .chip');
+  chips.forEach(c=>{
+    c.setAttribute('aria-pressed', c.dataset.f === current ? 'true' : 'false');
+    c.addEventListener('click', ()=>{
+      chips.forEach(x=>x.setAttribute('aria-pressed','false'));
+      c.setAttribute('aria-pressed','true');
+      current = c.dataset.f;
+      try { localStorage.setItem('tsuginohi-awards-filter', current); } catch(e){}
+      draw(current);
+    });
+  });
+
+  draw(current);
+  renderResultList();
+})();
 </script>
-</body>
-</html>
+
+</body></html>
