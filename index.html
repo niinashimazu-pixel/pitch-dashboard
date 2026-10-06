@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>9期 表彰選考マップ</title>
+<title>ピッチ選考ダッシュボード</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
 
@@ -109,9 +109,35 @@ h1{font-size:clamp(26px,4vw,34px);color:var(--ink);}
 .meta-row b{color:var(--ink-2);font-weight:700;}
 .update-note{
   margin-top:12px;background:var(--progress-bg);border:1px solid color-mix(in srgb, var(--progress) 30%, var(--border));
-  border-radius:9px;padding:10px 14px;font-size:12.5px;color:var(--ink-2);line-height:1.7;
+  border-radius:9px;padding:10px 14px;font-size:14.5px;color:var(--ink-2);line-height:1.7;
 }
 .update-note b{color:var(--progress);font-weight:700;}
+
+.priority-text{font-size:15px;}
+
+.celebrate-banner{
+  margin-top:12px;
+  background:linear-gradient(135deg, var(--good-bg), var(--prep-bg));
+  border:1.5px solid var(--good);
+  border-radius:11px;
+  padding:14px 18px;
+  font-size:14.5px;
+  line-height:1.7;
+  color:var(--ink);
+  box-shadow:var(--shadow);
+}
+.celebrate-banner .ctitle{
+  font-family:"Shippori Mincho",serif;
+  font-size:17px;
+  font-weight:700;
+  color:var(--good);
+}
+.celebrate-banner .csub{
+  display:block;
+  margin-top:4px;
+  font-size:12.5px;
+  color:var(--ink-2);
+}
 
 /* stat tiles */
 .stats{
@@ -146,8 +172,29 @@ section.attention{
   display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12.5px;font-variant-numeric:tabular-nums;
 }
 .attn-item.warn .badge{background:var(--prep);}
+.attn-item.good .badge{background:var(--good);}
 .attn-item p{margin:0;font-size:13.5px;line-height:1.65;color:var(--ink-2);}
 .attn-item p b{color:var(--ink);font-weight:700;}
+
+.attn-item.celebrate{
+  background:linear-gradient(135deg, var(--good-bg), var(--surface));
+  border-color:var(--good);
+}
+.attn-item.celebrate .badge{
+  background:var(--good);
+  font-size:16px;
+}
+.attn-item.celebrate p{font-size:14.5px;}
+.attn-item.celebrate p b{color:var(--good);}
+
+.badge-celebrate{
+  display:inline-flex;align-items:center;gap:5px;
+  background:linear-gradient(135deg, var(--good-bg), var(--prep-bg));
+  color:var(--good);
+  border:1px solid var(--good);
+  font-size:11.5px;font-weight:700;
+  padding:3px 10px;border-radius:999px;white-space:nowrap;width:fit-content;
+}
 
 /* section headers */
 section.block{margin-bottom:36px;}
@@ -303,23 +350,27 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-
 
 <div class="wrap">
   <header class="page">
-    <div class="eyebrow">経営企画室 ／ 戦略人事室</div>
-    <h1>9期 表彰選考マップ</h1>
-    <p class="page-sub">外部表彰・ピッチエントリー 全10件（⑧健康経営優良法人2027は一旦管理対象から除外）の選考ステータスと今後のマイルストーンを一覧化。前回は選考フローの整理まで完了。ここではその先の「今どこにいて、次に何をすべきか」を可視化する。</p>
+    <div class="eyebrow">経営企画室</div>
+    <h1>ピッチ選考ダッシュボード</h1>
+    <p class="page-sub">外部表彰・ピッチエントリー 全11件（⑧健康経営優良法人2027は一旦管理対象から除外）の選考ステータスと今後のマイルストーンを一覧化。前回は選考フローの整理まで完了。ここではその先の「今どこにいて、次に何をすべきか」を可視化する。</p>
     <div class="meta-row">
       <span><b>データ基準日</b>：2026/8/10時点（アップロード資料）</span>
-      <span><b>本日</b>：2026/9/29</span>
-      <span style="color:var(--accent-ink);font-weight:700;">現在の最優先：③GPTWランキング入り追加資料（9/30締切・COO確認中）／⑤JVA面接審査（日程未定）に向けた準備</span>
+      <span><b>本日</b>：2026/10/6</span>
+      <span class="priority-text" style="color:var(--accent-ink);font-weight:700;">現在の最優先：⑫Jスタートアップ資料作成（10/16締切）／⑪WE AT 2次選考用資料作成</span>
     </div>
     <div class="update-note">
-      <b>直近更新（9/29）</b>：⑤JVA＝2次審査書類を提出完了、面接審査待ちへ。③GPTW＝ランキング入り向け追加資料の提出期限が9/30に迫り、現在COO確認中。ランキング結果発表は12月下旬予定。⑨NIKKEI THE PITCH＝一次審査（書類）で落選、来期（10期）に再挑戦予定。
+      <b>提出完了！</b>③GPTW＝ランキング入り向け追加資料を9/30締切どおり提出完了、結果発表は12月予定。⑤JVA＝2次審査書類を提出完了、面接審査待ちへ。
+    </div>
+    <div class="celebrate-banner">
+      <span class="ctitle">🎉🎊 やりました！WE AT Challenge 2026、一次選考通過です！！ 🎊🎉</span>
+      <span class="csub">都市鉱山・DPF再生のストーリーがしっかり評価されました。この勢いのまま、2次選考（オンライン面談・英語）へ突き進みます 💪✨</span>
     </div>
   </header>
 
   <section class="stats">
     <div class="stat good"><div class="n">2</div><div class="l">受賞・認定確定<br>③④</div></div>
     <div class="stat progress"><div class="n">4</div><div class="l">提出済・審査中<br>⑤⑥⑦⑪</div></div>
-    <div class="stat prep"><div class="n">0</div><div class="l">準備中（保留）<br>—</div></div>
+    <div class="stat prep"><div class="n">1</div><div class="l">準備中<br>⑫</div></div>
     <div class="stat closed"><div class="n">3</div><div class="l">見送り<br>①②⑨</div></div>
     <div class="stat"><div class="n" style="color:var(--ink-3);">1</div><div class="l">情報未整理<br>⑩</div></div>
   </section>
@@ -327,17 +378,17 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-
   <section class="attention">
     <h2><span class="dot"></span>現在対応中</h2>
     <div class="attn-list">
-      <div class="attn-item">
-        <div class="badge">③</div>
-        <p><b>GPTW「働きがいのある会社」ランキング</b> — ランキング入りに向けた追加資料の提出期限が<b>9/30（水）</b>に迫る。現在COO確認中、承認待ちの最優先事項。</p>
+      <div class="attn-item warn">
+        <div class="badge">🦄</div>
+        <p><b>J-Startup（Jスタートアップ）🦄代表・CEO対応</b> — 新規追加。社長による動画ピッチを10/16（金）締切で提出予定。たたき台のスライドを作成中。</p>
+      </div>
+      <div class="attn-item celebrate">
+        <div class="badge">🎉</div>
+        <p><b>WE AT — やったー！1次選考（書類）通過です！！🎊</b> 2次選考（オンライン面談・英語）は10/26または10/27のいずれか（確定待ち）。英語対応を含めた準備を進める。</p>
       </div>
       <div class="attn-item">
         <div class="badge">⑤</div>
-        <p><b>Japan Venture Awards（JVA）</b> — 2次審査書類の提出が完了。</p>
-      </div>
-      <div class="attn-item warn">
-        <div class="badge">⑨</div>
-        <p><b>NIKKEI THE PITCH（SOCIAL部門）</b> — 一次審査（書類）で落選。ファイナリスト10組には非選出。来期（10期）再挑戦。</p>
+        <p><b>Japan Venture Awards（JVA）</b> — 2次審査書類の提出が完了。面接審査の日程は未定（調整中）。</p>
       </div>
     </div>
   </section>
@@ -363,17 +414,25 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-
       </div>
       <div class="tl-rows">
         <div class="tl-row">
-          <div class="rlabel"><b>③</b> GPTW（追加資料）</div>
+          <div class="rlabel"><b>⑫</b> J-Startup</div>
           <div class="tl-track">
-            <div class="today" style="left:13.2%"></div>
-            <div class="tl-dot" style="left:13.7%;background:var(--prep);" title="ランキング入り追加資料 提出期限 9/30（水）・COO確認中"></div>
-            <div class="tl-dot" style="left:54.2%;background:var(--progress);" title="ランキング結果発表 12月下旬予定"></div>
+            <div class="today" style="left:16.6%"></div>
+            <div class="tl-dot" style="left:21.2%;background:var(--prep);" title="提出締切 10/16（金）17時"></div>
+            <div class="tl-dot" style="left:64.1%;background:var(--progress);" title="選定企業の公表 2027年1月中予定"></div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="rlabel"><b>③</b> GPTW（ランキング発表）</div>
+          <div class="tl-track">
+            <div class="today" style="left:16.6%"></div>
+            <div class="tl-dot" style="left:5.7%;background:var(--good);" title="ランキング入り追加資料 9/30（水）提出完了"></div>
+            <div class="tl-dot" style="left:54.2%;background:var(--progress);" title="ランキング結果発表 12月予定"></div>
           </div>
         </div>
         <div class="tl-row">
           <div class="rlabel"><b>⑦</b> グッドライフアワード</div>
           <div class="tl-track">
-            <div class="today" style="left:13.2%"></div>
+            <div class="today" style="left:16.6%"></div>
             <div class="tl-dot" style="left:5.7%;background:var(--progress);" title="応募締切 9/13（提出済）"></div>
             <div class="tl-dot" style="left:40.1%;background:var(--progress);" title="受賞発表 11月下旬予定"></div>
             <div class="tl-dot" style="left:44.8%;background:var(--progress);" title="表彰式 12/5（土）予定"></div>
@@ -382,14 +441,14 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-
         <div class="tl-row">
           <div class="rlabel"><b>④</b> EYアントレプレナー</div>
           <div class="tl-track">
-            <div class="today" style="left:13.2%"></div>
+            <div class="today" style="left:16.6%"></div>
             <div class="tl-dot" style="left:21.2%;background:var(--good);" title="セレモニー・最終ピッチ・大賞決定 10/16"></div>
           </div>
         </div>
         <div class="tl-row">
           <div class="rlabel"><b>⑤</b> Japan Venture Awards</div>
           <div class="tl-track">
-            <div class="today" style="left:13.2%"></div>
+            <div class="today" style="left:16.6%"></div>
             <div class="tl-dot" style="left:7.5%;background:var(--good);" title="2次審査書類 提出完了（9月中旬〜下旬）"></div>
             <div class="tl-dot" style="left:28.8%;background:var(--progress);opacity:.55;" title="面接審査 日程未定（調整中）"></div>
             <div class="tl-dot" style="left:49.5%;background:var(--progress);" title="結果発表・表彰式 12/15（火）＠虎ノ門ヒルズフォーラム"></div>
@@ -398,7 +457,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-
         <div class="tl-row">
           <div class="rlabel"><b>⑥</b> 気候変動アクション環境大臣表彰</div>
           <div class="tl-track">
-            <div class="today" style="left:13.2%"></div>
+            <div class="today" style="left:16.6%"></div>
             <div class="tl-dot" style="left:33.0%;background:var(--progress);" title="結果発表 11月上旬〜中旬"></div>
             <div class="tl-dot" style="left:49.5%;background:var(--progress);" title="表彰式 12月中旬頃"></div>
           </div>
@@ -406,11 +465,11 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-
         <div class="tl-row">
           <div class="rlabel"><b>⑪</b> WE AT</div>
           <div class="tl-track">
-            <div class="today" style="left:13.2%"></div>
-            <div class="tl-dot" style="left:16.0%;background:var(--progress);" title="1次選考通過チーム発表 10/5（月）"></div>
-            <div class="tl-dot" style="left:25.9%;background:var(--progress);" title="2次選考（オンライン面談・英語）10/26（月）〜10/27（火）"></div>
-            <div class="tl-dot" style="left:29.2%;background:var(--progress);" title="2次選考通過チーム発表 11/2（月）"></div>
-            <div class="tl-dot" style="left:41.0%;background:var(--progress);" title="最終選考会 11/27（金）＠TIB（現地登壇・英語）"></div>
+            <div class="today" style="left:16.6%"></div>
+            <div class="tl-dot" style="left:16.0%;background:var(--good);" title="1次選考通過 🎉 10/5"></div>
+            <div class="tl-dot" style="left:25.9%;background:var(--progress);opacity:.75;" title="2次選考（オンライン面談・英語）10/26または10/27（確定待ち）"></div>
+            <div class="tl-dot" style="left:29.2%;background:var(--progress);opacity:.55;" title="2次選考通過チーム発表 11/2予定（2次選考の日程確定待ち）"></div>
+            <div class="tl-dot" style="left:41.0%;background:var(--progress);opacity:.55;" title="最終選考会 11/27（金）＠TIB（現地登壇・英語）予定"></div>
           </div>
         </div>
       </div>
@@ -418,7 +477,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-
         <span><i style="background:var(--good);"></i>受賞・認定確定</span>
         <span><i style="background:var(--progress);"></i>提出済・審査中</span>
         <span><i style="background:var(--prep);"></i>準備中</span>
-        <span><i style="background:var(--accent);width:3px;height:11px;border-radius:1px;"></i>本日（9/29）</span>
+        <span><i style="background:var(--accent);width:3px;height:11px;border-radius:1px;"></i>本日（10/6）</span>
         <span>◎ 赤枠＝経過済／要確認の日程</span>
       </div>
     </div>
@@ -427,17 +486,17 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-
   <section class="block">
     <h2>案件一覧</h2>
     <div class="filters" id="filters">
-      <button class="chip" data-f="all" aria-pressed="true">すべて（10）</button>
+      <button class="chip" data-f="all" aria-pressed="true">すべて（11）</button>
       <button class="chip" data-f="won" aria-pressed="false">受賞・認定確定（2）</button>
       <button class="chip" data-f="progress" aria-pressed="false">提出済・審査中（4）</button>
-      <button class="chip" data-f="prep" aria-pressed="false">準備中（0）</button>
+      <button class="chip" data-f="prep" aria-pressed="false">準備中（1）</button>
       <button class="chip" data-f="closed" aria-pressed="false">見送り（3）</button>
     </div>
     <div class="grid" id="cardGrid"></div>
   </section>
 
   <footer>
-    データ出典：「0817経営企画室_アワード関連2026スケジュール - 外部表彰・ピッチ一覧」（8/10時点ステータス）。9/29時点でニーナ氏より個別ステータス（JVA・GPTW・NIKKEI THE PITCH）の更新情報を反映。⑧健康経営優良法人2027は一旦管理対象から除外（番号は欠番）。今後のマイルストーン日程のうち「頃」「予定」と付記されたものは概算表示。⑩ホワイト企業認定は原資料に詳細記載なし。本ダッシュボードは記録の可視化を目的とし、各案件の最新ステータスは都度現場で確認すること。
+    データ出典：「0817経営企画室_アワード関連2026スケジュール - 外部表彰・ピッチ一覧」（8/10時点ステータス）。9/29時点でニーナ氏より個別ステータス（JVA・GPTW・NIKKEI THE PITCH）の更新情報を反映。10/6時点でさらにWE AT（1次選考通過）・GPTW（追加資料9/30提出完了）の更新情報を反映。⑧健康経営優良法人2027は一旦管理対象から除外（番号は欠番）。今後のマイルストーン日程のうち「頃」「予定」と付記されたものは概算表示。⑩ホワイト企業認定は原資料に詳細記載なし。本ダッシュボードは記録の可視化を目的とし、各案件の最新ステータスは都度現場で確認すること。
   </footer>
 </div>
 
@@ -446,8 +505,8 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-
   const AWARDS = [
     {no:1, cat:'closed', name:'第8回 Sustainable Japan Award 2026', org:'株式会社ジャパンタイムズキューブ', deadline:'2026/6/30（終了）', status:'見送り（時間不足のため未応募）', win:'定量CO₂×循環経済の独自性', risk:'英文対応の要否が最後まで未確定のまま時間切れ', resultSort:null, resultText:'対象外', resultDetail:'未応募のため結果発表なし', flow:[]},
     {no:2, cat:'closed', name:'グッドキャリア企業アワード2026（イノベーション賞狙い）', org:'厚生労働省', deadline:'2026/7/14（終了）', status:'見送り（時間不足のため未応募）', win:'9期制度刷新×定着率97%', risk:'障害者雇用の達成が応募条件必須', resultSort:null, resultText:'対象外', resultDetail:'未応募のため結果発表なし', flow:[]},
-    {no:3, cat:'won', name:'GPTW「働きがいのある会社」ランキング', org:'GPTW Japan', deadline:'追加資料提出 9/30（水）締切・COO確認中', status:'認定は獲得済み。ランキング入りに向けた追加資料の提出期限が9/30に迫り、現在COO確認中・承認待ちの最優先事項', target:'次の灯', win:'制度刷新後のスコア安定を待って実施', risk:'9/30締切に間に合わない場合、ランキング入りの機会を逃すおそれ', resultSort:'2026-12-25', resultText:'12月下旬', resultDetail:'認定は取得済み。ランキング結果は12月下旬に発表予定', flow:[
-      {t:'エントリー', done:true},{t:'認定獲得', done:true},{t:'ランキング入り向け追加資料をCOO確認中（9/30締切）', current:true}
+    {no:3, cat:'won', name:'GPTW「働きがいのある会社」ランキング', org:'GPTW Japan', deadline:'ランキング結果発表 12月予定', status:'認定は取得済み。ランキング入りに向けた追加資料を9/30締切どおり提出完了。ランキング結果は12月に発表予定', target:'次の灯', win:'制度刷新後のスコア安定を待って実施', risk:'ランキング選出基準は非公開のため、結果は発表まで不透明', resultSort:'2026-12-25', resultText:'12月', resultDetail:'認定は取得済み。追加資料は9/30に提出完了、ランキング結果は12月に発表予定', flow:[
+      {t:'エントリー', done:true},{t:'認定獲得', done:true},{t:'ランキング入り向け追加資料を9/30に提出完了', done:true},{t:'ランキング結果発表（12月予定）', current:true}
     ]},
     {no:4, cat:'won', ceoFlag:true, name:'EYアントレプレナー・オブ・ザ・イヤー2026（Regional Vitalization Leader部門＝中国地区）', org:'EY Japan', deadline:'10月16日 セレモニー', status:'Challenging Spirit部門選出＝部門賞受賞確定。最終ピッチに向けて調整中', target:'CEO', win:'18億→25億→100億のJ-Curve成長ストーリー、地方発×循環経済×社長の人格', risk:'本人合意・推薦者確保が必須。会社ではなく社長個人が評価・登壇の対象', resultSort:'2026-10-16', resultText:'10/16（金）', resultDetail:'セレモニーで最終ピッチ後、Challenging Spirit部門の大賞（1名）が決定', flow:[
       {t:'エントリー・書類審査', done:true},{t:'Challenging Spirit部門選出（4名）＝部門賞受賞確定', done:true},{t:'10/16 セレモニー・代表者による最終ピッチ', current:true},{t:'Challenging Spirit部門 大賞決定（1名）'}
@@ -465,8 +524,11 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-
       {t:'応募期間：6/22〜8/24（完了）', done:true},{t:'9月 書類一次審査 実施', done:true},{t:'一次審査結果：落選（ファイナリスト10組に非選出）', done:true},{t:'来期（10期）NIKKEI THE PITCH 再挑戦を予定', current:true}
     ]},
     {no:10, cat:'none', name:'ホワイト企業認定', org:'（原資料に記載なし）', deadline:'情報未整理', status:'原資料に詳細情報の記載なし。制度概要・スケジュールの整理待ち', target:'', win:'', risk:'', resultSort:null, resultText:'不明', resultDetail:'原資料に記載なし', flow:[]},
-    {no:11, cat:'progress', ceoFlag:true, name:'WE AT', org:'一般社団法人WE AT', deadline:'2026/8/31（月）23:59', status:'提出済み。1次選考中（書類）。10/5に1次選考通過チームが発表される', target:'スタートアップ、起業前の学生・研究者・企業内プロジェクト、個人、団体（グローバル展開を視野に入れていることが前提条件）', win:'都市鉱山・レアメタル回収・DPF再生によるCO₂削減は、Track1「Planetary Wellbeing」（地球環境）の課題設定に直球で合う。', risk:'応募条件「グローバル展開」を国内中心の現事業フレームでどう訴求するか要検討。2次選考（オンライン面談）・最終選考会（現地登壇）とも英語対応が必須。応募締切がNIKKEI THE PITCH（8/24）と近接。', resultSort:'2026-10-05', resultText:'10/5（月）', resultDetail:'1次選考通過チームが発表される（書類選考の可否）', resultNote:'2次選考（オンライン面談・英語）は10/26〜10/27、2次選考通過発表は11/2、最終選考会は11/27＠TIB（現地登壇・英語）', flow:[
-      {t:'8/31（月）エントリー締切・1次選考開始（書類選考）', done:true},{t:'10/5（月）1次選考通過チーム発表', current:true},{t:'10/26（月）〜10/27（火）2次選考（オンライン面談・英語）'},{t:'11/2（月）2次選考通過チーム発表'},{t:'11/27（金）最終選考会＠TIB（現地登壇・英語）'}
+    {no:11, cat:'progress', celebrate:true, ceoFlag:true, name:'WE AT', org:'一般社団法人WE AT', deadline:'2次選考（オンライン面談・英語）10/26または10/27（確定待ち）', status:'🎉やりました！1次選考（書類）を通過！！2次選考（オンライン面談・英語）は10/26または10/27のいずれか（確定待ち）', target:'スタートアップ、起業前の学生・研究者・企業内プロジェクト、個人、団体（グローバル展開を視野に入れていることが前提条件）', win:'都市鉱山・レアメタル回収・DPF再生によるCO₂削減は、Track1「Planetary Wellbeing」（地球環境）の課題設定に直球で合う。1次選考通過により訴求の方向性が審査側に刺さっている手応え。', risk:'応募条件「グローバル展開」を国内中心の現事業フレームでどう訴求するか要検討。2次選考（オンライン面談）・最終選考会（現地登壇）とも英語対応が必須。', resultSort:'2026-10-26', resultText:'10/26または10/27', resultDetail:'2次選考（オンライン面談・英語）を実施（日程はいずれか確定待ち）', resultNote:'2次選考通過チーム発表は11/2予定。最終選考会は11/27＠TIB（現地登壇・英語）', flow:[
+      {t:'8/31（月）エントリー締切・1次選考開始（書類選考）', done:true},{t:'10/5（月）1次選考通過 🎉', done:true},{t:'2次選考（オンライン面談・英語）10/26または10/27（確定待ち）', current:true},{t:'11/2（月）2次選考通過チーム発表（予定）'},{t:'11/27（金）最終選考会＠TIB（現地登壇・英語）'}
+    ]},
+    {no:12, cat:'prep', ceoFlag:true, name:'J-Startup（Jスタートアップ）', org:'経済産業省・JETRO等が推進するスタートアップ支援プログラム', deadline:'2026/10/16（金）17時締切（公募期間：9/1〜）', status:'新規追加。社長による動画ピッチを提出予定。たたき台のスライドを作成中', target:'J-Startupは企業名ではなく、経済産業省が推進する日本のトップクラス有望スタートアップ支援プログラム。採択企業は政府・VC・大企業・海外投資家向けの重点支援対象となる', win:'事業の革新性とグローバル成長可能性の証明が軸。都市鉱山×DPF再生の循環モデル、地方発×J-Curve成長ストーリーが活きる', risk:'10/16 17時締切まで日数が短い。社長による動画収録のスケジュール確保が必要', resultSort:'2027-01-31', resultText:'2027年1月中', resultDetail:'選定企業が公表される予定', flow:[
+      {t:'公募期間：2026/9/1（火）〜10/16（金）17時', current:false},{t:'たたき台スライド作成中', current:true},{t:'社長による動画ピッチ収録'},{t:'10/16（金）17時 提出締切'},{t:'選定企業の公表（2027年1月中予定）'}
     ]}
   ];
 
@@ -492,13 +554,21 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-
     top.appendChild(pill(a.cat));
     card.appendChild(top);
 
-    if (a.ceoFlag){
+    if (a.ceoFlag || a.celebrate){
       const badgesRow = document.createElement('div');
       badgesRow.className = 'badges-row';
-      const ceo = document.createElement('span');
-      ceo.className = 'ceo-badge';
-      ceo.innerHTML = '🦄 代表・CEO対応';
-      badgesRow.appendChild(ceo);
+      if (a.celebrate){
+        const cel = document.createElement('span');
+        cel.className = 'badge-celebrate';
+        cel.innerHTML = '🎉 一次選考通過！';
+        badgesRow.appendChild(cel);
+      }
+      if (a.ceoFlag){
+        const ceo = document.createElement('span');
+        ceo.className = 'ceo-badge';
+        ceo.innerHTML = '🦄 代表・CEO対応';
+        badgesRow.appendChild(ceo);
+      }
       card.appendChild(badgesRow);
     }
 
